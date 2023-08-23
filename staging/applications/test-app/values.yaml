@@ -3,7 +3,26 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+##
+## Application
+##
+
+controller:
+  type: deployment
+  replicas: 1
+  strategy: RollingUpdate
+
+service:
+  main:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        port: 80
+
 secrets:
   secretenv:
-    stringData:
+    enabled: true
+    stringData: {}
       #SOME_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>"
