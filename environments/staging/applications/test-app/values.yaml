@@ -25,4 +25,4 @@ secrets:
   secretenv:
     enabled: true
     stringData:
-      TEST: test
+      TEST: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#test>"
