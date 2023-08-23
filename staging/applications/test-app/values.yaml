@@ -24,5 +24,6 @@ service:
 secrets:
   secretenv:
     enabled: true
-    stringData: {}
+    stringData:
+      TEST: test
       #SOME_SECRET: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dencun-devnets.ethstats_secret}>"
