@@ -26,7 +26,11 @@ env:
   REPOSITORY_PATH: /data/repository
   SOLC_REPO: /data/compilers/solc
   SOLJSON_REPO: /data/compilers/soljson
-  #FALLBACK_IPFS_GATEWAY: ""
+
+  IPFS_GATEWAY: http://cluster-ipfs-gateway-api:9095/ipfs/
+  NODE_URL_MAINNET: https://rpc.mainnet.ethpandaops.io
+  NODE_URL_GOERLI: https://rpc.goerli.ethpandaops.io
+  NODE_URL_SEPOLIA: https://rpc.sepolia.ethpandaops.io
 
 ##
 ## Secrets
@@ -34,8 +38,15 @@ env:
 
 secrets:
   secretenv:
-    enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
-    stringData: {}
+    enabled: true
+    stringData:
+      CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
+      CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
+      INFURA_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_ID>"
+      ALCHEMY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID>"
+      ALCHEMY_ID_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_OPTIMISM>"
+      ALCHEMY_ID_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_ARBITRUM>"
+      FALLBACK_IPFS_GATEWAY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"
 
 ##
 ## Data persistence

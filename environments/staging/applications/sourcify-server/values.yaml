@@ -32,11 +32,15 @@ env:
   SOLJSON_REPO: /data/compilers/soljson
   SERVER_PORT: "80"
 
-  IPFS_GATEWAY: https://ipfs.io/ipfs/
+  IPFS_GATEWAY: http://cluster-ipfs-gateway-api:9095/ipfs/
   AUTH0_AUDIENCE: https://sourcify.dev
   AUTH0_ISSUERBASEURL: https://dev-htkreq1l71u1hn5l.us.auth0.com
   AUTH0_TOKENSIGNINGALG: RS256
   AUTH0_CLIENTID: epipuQWJL67dVggPvxNmAy40ggzNum9F
+
+  NODE_URL_MAINNET: https://rpc.mainnet.ethpandaops.io
+  NODE_URL_GOERLI: https://rpc.goerli.ethpandaops.io
+  NODE_URL_SEPOLIA: https://rpc.sepolia.ethpandaops.io
 
 ##
 ## Secrets
@@ -44,30 +48,27 @@ env:
 
 secrets:
   secretenv:
-    enabled: true # If enabled, a Secret will be created and imported via envFrom into the main application.
+    enabled: true
     stringData:
-      SESSION_SECRET: yoursessionsecret
-      # # RPC endpoint tokens
-      # CF_ACCESS_CLIENT_ID: ""
-      # CF_ACCESS_CLIENT_SECRET: ""
-      # INFURA_ID: ""
-      # ALCHEMY_ID: ""
-      # ALCHEMY_ID_OPTIMISM: ""
-      # ALCHEMY_ID_ARBITRUM: ""
-      # # "Etherscans"
-      # ETHERSCAN_API_KEY: ""
-      # ARBISCAN_API_KEY: ""
-      # POLYGONSCAN_API_KEY: ""
-      # BSCSCAN_API_KEY: ""
-      # SNOWTRACE_API_KEY: ""
-      # CELOSCAN_API_KEY: ""
-      # MOONSCAN_MOONBEAM_API_KEY: ""
-      # MOONSCAN_MOONRIVER_API_KEY: ""
-      # BOBASCAN_API_KEY: ""
-      # GNOSISSCAN_API_KEY: ""
-      # OPTIMISMSCAN_API_KEY: ""
-      # CRONOSCAN_API_KEY: ""
-      # BASESCAN_API_KEY: ""
+      SESSION_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#SOURCIFY_SERVER_SESSION_SECRET>"
+      CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
+      CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
+      INFURA_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_ID>"
+      ALCHEMY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID>"
+      ALCHEMY_ID_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_OPTIMISM>"
+      ALCHEMY_ID_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_ARBITRUM>"
+      ARBISCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ARBISCAN_API_KEY>"
+      POLYGONSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#POLYGONSCAN_API_KEY>"
+      BSCSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#BSCSCAN_API_KEY>"
+      SNOWTRACE_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#SNOWTRACE_API_KEY>"
+      CELOSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CELOSCAN_API_KEY>"
+      MOONSCAN_MOONBEAM_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#MOONSCAN_MOONBEAM_API_KEY>"
+      MOONSCAN_MOONRIVER_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#MOONSCAN_MOONRIVER_API_KEY>"
+      BOBASCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#BOBASCAN_API_KEY>"
+      GNOSISSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#GNOSISSCAN_API_KEY>"
+      OPTIMISMSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#OPTIMISMSCAN_API_KEY>"
+      CRONOSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CRONOSCAN_API_KEY>"
+      BASESCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#BASESCAN_API_KEY>"
 
 ##
 ## Data persistence
