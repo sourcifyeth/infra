@@ -23,6 +23,6 @@ service:
 
 secrets:
   secretenv:
-    enabled: true
-    stringData:
-      TEST: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#test>"
+    enabled: false
+    stringData: {}
+      # TEST: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#test>"
