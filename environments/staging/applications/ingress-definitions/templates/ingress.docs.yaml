@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sourcify-docs
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: ingress-nginx-public
+  tls:
+    - hosts:
+        - "docs.{{ .Values.domain }}"
+      secretName: ingress-sourcify-docs
+  rules:
+    - host: "docs.{{ .Values.domain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-docs
+                port:
+                  number: 80
