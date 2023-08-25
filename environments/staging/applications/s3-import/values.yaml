@@ -1,0 +1,47 @@
+image:
+  repository: peakcom/s5cmd
+  tag: v2.1.0
+  pullPolicy: IfNotPresent
+
+##
+## Application
+##
+
+command:
+  - /s5cmd
+  - sync
+  - s3://sourcify-backup-s3/latest/*
+  - /data/test
+
+controller:
+  type: statefulset
+  replicas: 1
+  strategy: RollingUpdate
+
+##
+## Data source
+##
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository
+    mountPath: /data
+
+##
+## Environment configuration
+##
+
+env: {}
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: true
+    stringData:
+      AWS_ACCESS_KEY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#S3_SYNC_AWS_ACCESS_KEY_ID>"
+      AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#S3_SYNC_AWS_SECRET_ACCESS_KEY>"

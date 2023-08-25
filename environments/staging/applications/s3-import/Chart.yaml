@@ -1,0 +1,14 @@
+---
+apiVersion: v2
+name: s3-import
+home: https://github.com/sourcifyeth/docs
+type: application
+version: 0.0.1
+kubeVersion: ">=1.22.0-0"
+maintainers:
+  - name: skylenet
+    email: rafael@skyle.net
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts
+    version: 1.5.1
