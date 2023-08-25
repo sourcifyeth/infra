@@ -10,13 +10,19 @@ image:
 command:
   - /s5cmd
   - sync
-  - s3://sourcify-backup-s3/latest/*
-  - /data/test
+  - s3://sourcify-backup-s3/latest/repository/contracts/*
+  - /data/contracts
 
 controller:
-  type: statefulset
-  replicas: 1
-  strategy: RollingUpdate
+  type: cronjob
+  restartPolicy: Never
+  cronjob:
+    concurrencyPolicy: Forbid
+    schedule: "* * * * *"
+    startingDeadlineSeconds: 30
+    successfulJobsHistory: 1
+    failedJobsHistory: 1
+    backoffLimit: 6
 
 ##
 ## Data source
