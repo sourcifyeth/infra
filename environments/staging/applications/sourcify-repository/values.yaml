@@ -9,7 +9,7 @@ image:
 
 controller:
   type: deployment
-  replicas: 1
+  replicas: 0
   strategy: RollingUpdate
 
 service:
