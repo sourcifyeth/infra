@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+name: ipfs-gateway
+type: application
+version: 0.0.1
+kubeVersion: ">=1.22.0-0"
+dependencies:
+  - name: ipfs-cluster
+    repository: https://ethpandaops.github.io/ethereum-helm-charts
+    version: 0.1.1
