@@ -19,13 +19,12 @@ command:
       OUTPUT="$OUTPUT    \"full_match\": $(find /data/contracts/full_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l),";
       OUTPUT="$OUTPUT    \"partial_match\": $(find /data/contracts/partial_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l)";
 
-      if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]
-        then
-            OUTPUT="$OUTPUT  }";
-        else
-            OUTPUT="$OUTPUT  },";
-        fi
-    done
+      if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]; then
+        OUTPUT="$OUTPUT  }";
+      else
+        OUTPUT="$OUTPUT  },";
+      fi
+    done;
     OUTPUT="$OUTPUT}";
 
     echo "Finished find in repo for stats";
