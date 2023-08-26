@@ -27,7 +27,7 @@ service:
 
 env:
   REPOSITORY_PATH: /data/repository
-  REPOSITORY_SERVER_URL: https://repo.sourcify.dev
+  REPOSITORY_SERVER_URL: https://repo.sourcify-staging.ethpandaops.io
   SOLC_REPO: /data/compilers/solc
   SOLJSON_REPO: /data/compilers/soljson
   SERVER_PORT: "80"
