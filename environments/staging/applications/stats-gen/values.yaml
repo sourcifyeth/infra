@@ -21,9 +21,9 @@ command:
 
       if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]
         then
-            OUTPUT="$OUTPUT  }"
+            OUTPUT="$OUTPUT  }";
         else
-            OUTPUT="$OUTPUT  },"
+            OUTPUT="$OUTPUT  },";
         fi
     done
     OUTPUT="$OUTPUT}";
