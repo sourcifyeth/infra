@@ -10,8 +10,8 @@ image:
 command:
   - /s5cmd
   - sync
-  - /data
-  - s3://sourcify-backup-s3/latest-test # Should be set to "latest" once we are happy with the setup
+  - /data/contracts/
+  - s3://sourcify-backup-s3/latest/repository/contracts/
 
 controller:
   type: cronjob
@@ -32,7 +32,7 @@ persistence:
   data:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository
+    existingClaim: sourcify-repository-xfs
     mountPath: /data
 
 ##
