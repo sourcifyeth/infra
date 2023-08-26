@@ -27,7 +27,7 @@ env:
   SOLC_REPO: /data/compilers/solc
   SOLJSON_REPO: /data/compilers/soljson
 
-  IPFS_GATEWAY: http://cluster-ipfs-gateway-api:9095/ipfs/
+  IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
   NODE_URL_MAINNET: https://rpc.mainnet.ethpandaops.io
   NODE_URL_GOERLI: https://rpc.goerli.ethpandaops.io
   NODE_URL_SEPOLIA: https://rpc.sepolia.ethpandaops.io
