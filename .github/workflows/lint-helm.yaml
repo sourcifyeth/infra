@@ -23,4 +23,6 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Lint
         run: >
-          helm lint environments/*/applications/*
+          helm lint
+          environments/*/applications/*
+          environments/*/applications-disabled/*
