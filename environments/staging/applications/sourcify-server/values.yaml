@@ -9,7 +9,7 @@ image:
 
 controller:
   type: statefulset
-  replicas: 0
+  replicas: 1
   strategy: RollingUpdate
 
 service:
@@ -78,7 +78,7 @@ persistence:
   data:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository
+    existingClaim: sourcify-repository-xfs
     mountPath: /data/repository
   compilers:
     enabled: true
