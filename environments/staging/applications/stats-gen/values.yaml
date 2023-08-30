@@ -9,26 +9,7 @@ image:
 
 command:
   - bash
-  - -c
-  - >-
-    set -x;
-    CHAINS=$(find /data/contracts/full_match/ -mindepth 1 -maxdepth 1 -type d | rev | cut -d "/" -f1 | rev);
-    OUTPUT="{ ";
-    for chainId in ${CHAINS}; do
-      OUTPUT="$OUTPUT  \"$chainId\": {";
-      OUTPUT="$OUTPUT    \"full_match\": $(find /data/contracts/full_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l),";
-      OUTPUT="$OUTPUT    \"partial_match\": $(find /data/contracts/partial_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l)";
-
-      if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]; then
-        OUTPUT="$OUTPUT  }";
-      else
-        OUTPUT="$OUTPUT  },";
-      fi
-    done;
-    OUTPUT="$OUTPUT}";
-
-    echo "Finished find in repo for stats";
-    echo $OUTPUT > /data/stats.json;
+  - /scripts/generate.sh
 
 controller:
   type: cronjob
@@ -40,6 +21,35 @@ controller:
     successfulJobsHistory: 1
     failedJobsHistory: 1
     backoffLimit: 6
+
+configMaps:
+  scripts:
+    enabled: true
+    data:
+      generate.sh: |
+        #!/bin/bash
+        echo "Started stats generation $(date)"
+        REPOSITORY_PATH="/data"
+        CHAINS=$(find $REPOSITORY_PATH/contracts/full_match/ -mindepth 1 -maxdepth 1 -type d | rev | cut -d "/" -f1 | rev)
+
+        OUTPUT="{ "
+        for chainId in ${CHAINS}; do
+          OUTPUT="$OUTPUT  \"$chainId\": {"
+          OUTPUT="$OUTPUT    \"full_match\": $(find $REPOSITORY_PATH/contracts/full_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l),"
+          OUTPUT="$OUTPUT    \"partial_match\": $(find $REPOSITORY_PATH/contracts/partial_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l)"
+
+          if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]
+            then
+                OUTPUT="$OUTPUT  }"
+            else
+                OUTPUT="$OUTPUT  },"
+            fi
+
+        done
+        OUTPUT="$OUTPUT}"
+
+        echo "Finished stats generation $(date)"
+        echo $OUTPUT > $REPOSITORY_PATH/stats.json
 
 ##
 ## Data source

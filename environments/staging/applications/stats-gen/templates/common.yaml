@@ -39,6 +39,15 @@ envFrom:
   {{- toYaml . | nindent 2 }}
   {{- end }}
 {{- end }}
+persistence:
+  scripts:
+    enabled: true
+    type: configMap
+    mountPath: /scripts
+    name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-scripts
+  {{- with .Values.persistence }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
 {{- end -}}
 
 {{- $_ := mergeOverwrite .Values (include "app-template.hardcodedValues" . | fromYaml) -}}
