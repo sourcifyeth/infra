@@ -40,11 +40,6 @@ secrets:
 ##
 
 persistence:
-  data:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-repository
-    mountPath: /data/repository
   data-xfs:
     enabled: true
     type: pvc
