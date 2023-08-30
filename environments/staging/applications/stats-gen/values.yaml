@@ -16,7 +16,7 @@ controller:
   restartPolicy: Never
   cronjob:
     concurrencyPolicy: Forbid
-    schedule: "* * * * *"
+    schedule: "0 13 * * *"
     startingDeadlineSeconds: 30
     successfulJobsHistory: 1
     failedJobsHistory: 1
