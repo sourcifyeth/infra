@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: image-pull-secret
+description: .dockerconfigjson required for image pull secret from private / rate-limited registries
+type: application
+version: 0.0.1
+kubeVersion: ">=1.22.0-0"

@@ -1,0 +1,4 @@
+imageCredentials:
+  - registry: "ghcr.io"
+    username: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ghcr_pull_username>"
+    accessToken: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ghcr_pull_token>"
