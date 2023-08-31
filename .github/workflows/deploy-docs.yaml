@@ -1,8 +1,8 @@
+name: Deploy docs
 on:
   repository_dispatch:
     types:
       - deploy-docs
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,11 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Update values.yaml
         uses: fjogeleit/yaml-update-action@ce08f5c158d28267b942d9ee71a62628f5d68644
-        env:
-          IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
-          ENVIRONMENT: ${{ github.event.client_payload.environment }}
         with:
-          valueFile: environments/${{ github.event.client_payload.environment }}/applications/sourcify-docs
+          valueFile: environments/${{ github.event.client_payload.environment }}/applications/sourcify-docs/values.yaml
           propertyPath: image.tag
           value: ${{ github.event.client_payload.image_tag }}
       - name: Commit changes
