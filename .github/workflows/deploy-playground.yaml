@@ -1,0 +1,30 @@
+name: Deploy playground
+on:
+  repository_dispatch:
+    types:
+      - deploy-playground
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
+          ENVIRONMENT: ${{ github.event.client_payload.environment }}
+        run: |
+          echo $ENVIRONMENTS
+          echo $IMAGE_TAG
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_DISPATCH_TOKEN }}
+      - name: Update values.yaml
+        uses: mikefarah/yq@6609ed76ecb69f9d8254345292d90ea72f641715
+        with:
+          cmd: >-
+            yq -i '.image.tag = "${{ github.event.client_payload.image_tag }}"'
+            "environments/${{ github.event.client_payload.environment }}/applications/sourcify-playground/values.yaml"
+      - name: Commit changes
+        uses: EndBug/add-and-commit@1bad3abcf0d6ec49a5857d124b0bfb52dc7bb081
+        with:
+          message: >-
+            ci(${{ github.event.client_payload.environment }}): update playground - ${{ github.event.client_payload.ref }}/${{ github.event.client_payload.sha }}"
+          default_author: github_actions

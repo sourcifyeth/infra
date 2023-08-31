@@ -1,5 +1,5 @@
 image:
-  repository: skylenet/sourcify-playground
+  repository: ghcr.io/sourcifyeth/metadata-playground
   tag: main-fa4e00a
   pullPolicy: IfNotPresent
 imagePullSecrets:
