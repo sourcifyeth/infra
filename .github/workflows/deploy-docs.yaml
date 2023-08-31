@@ -1,0 +1,30 @@
+on:
+  repository_dispatch:
+    types:
+      - deploy-docs
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
+          ENVIRONMENT: ${{ github.event.client_payload.environment }}
+        run: |
+          echo $ENVIRONMENTS
+          echo $IMAGE_TAG
+      - uses: actions/checkout@v3
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@ce08f5c158d28267b942d9ee71a62628f5d68644
+        env:
+          IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
+          ENVIRONMENT: ${{ github.event.client_payload.environment }}
+        with:
+          valueFile: environments/${{ github.event.client_payload.environment }}/applications/sourcify-docs
+          propertyPath: image.tag
+          value: ${{ github.event.client_payload.image_tag }}
+      - name: Commit changes
+        uses: EndBug/add-and-commit@1bad3abcf0d6ec49a5857d124b0bfb52dc7bb081
+        with:
+          message: "ci(${{ github.event.client_payload.environment }}): update docs"
+          default_author: github_actions
