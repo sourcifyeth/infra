@@ -15,13 +15,13 @@
 {{/*
   Generate the .dockerconfigjson file unencoded.
 */}}
-{{- define "image-pull-secret.b64dec" }}
+{{- define "image-pull-secret.render" }}
   {{- print "{\"auths\":{" }}
   {{- range $index, $item := .Values.imageCredentials }}
     {{- if $index }}
       {{- print "," }}
     {{- end }}
-    {{- printf "\"%s\":{\"auth\":\"%s\"}" (default "https://index.docker.io/v1/" $item.registry) (printf "%s:%s" $item.username $item.accessToken | b64enc) }}
+    {{- printf "\"%s\":{\"auth\":\"%s\"}" (default "https://index.docker.io/v1/" $item.registry) (printf "%s" $item.auth) }}
   {{- end }}
   {{- print "}}" }}
 {{- end }}
@@ -30,6 +30,3 @@
   Generate the base64-encoded .dockerconfigjson.
   See https://github.com/helm/helm/issues/3691#issuecomment-386113346
 */}}
-{{- define "image-pull-secret.b64enc" }}
-  {{- include "image-pull-secret.b64dec" . | b64enc }}
-{{- end }}
