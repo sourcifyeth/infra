@@ -1,11 +1,17 @@
 image:
   repository: skylenet/sourcify-docs
-  tag: '{{ github.ref_name }}@sha256:8cb86dc74d651d6e1624e0b2b118bdd918d9d530b326779470c8c4e93a9e6f57'
+  tag: main-d2f67ed
   pullPolicy: IfNotPresent
+
+##
+## Application
+##
+
 controller:
   type: deployment
   replicas: 1
   strategy: RollingUpdate
+
 service:
   main:
     enabled: true
@@ -14,11 +20,26 @@ service:
     ports:
       http:
         port: 80
+
+##
+## Environment configuration
+##
+
 env: {}
+
+##
+## Secrets
+##
+
 secrets:
   secretenv:
-    enabled: false
+    enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
     stringData: {}
+
+##
+## Health probes
+##
+
 probes:
   liveness:
     enabled: true
@@ -41,6 +62,11 @@ probes:
       timeoutSeconds: 1
       periodSeconds: 5
       failureThreshold: 30
+
+##
+## Ingress
+##
+
 ingress:
   main:
     enabled: false
