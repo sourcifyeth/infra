@@ -1,0 +1,87 @@
+image:
+  repository: linuxserver/openssh-server
+  tag: version-9.3_p2-r0
+  pullPolicy: IfNotPresent
+
+service:
+  main:
+    enabled: true
+    primary: true
+    type: NodePort
+    ports:
+      http:
+        enabled: false
+      ssh:
+        enabled: true
+        port: "2222"
+        protocol: TCP
+        nodePort: 31000
+
+##
+## Environment configuration
+##
+
+env:
+  PUBLIC_KEY_URL: https://github.com/skylenet.keys
+  USER_NAME: devops
+  SUDO_ACCESS: "true"
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
+    stringData: {}
+
+##
+## Data
+##
+
+persistence:
+  data-xfs:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-xfs
+    mountPath: /data/repository-xfs
+  compilers:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-compilers
+    mountPath: /data/compilers
+
+##
+## Health probes
+##
+
+probes:
+  liveness:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  readiness:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  startup:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      timeoutSeconds: 1
+      periodSeconds: 5
+      failureThreshold: 30
+
+##
+## Ingress
+##
+
+ingress:
+  main:
+    enabled: false
