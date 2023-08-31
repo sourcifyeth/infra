@@ -1,0 +1,55 @@
+name: Deploy
+on:
+  repository_dispatch:
+    types:
+      - deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          ENVIRONMENT: ${{ github.event.client_payload.environment }}
+          COMPONENT: ${{ github.event.client_payload.component }}
+          IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
+        run: |
+          echo $ENVIRONMENT
+          echo $COMPONENT
+          echo $IMAGE_TAG
+      - name: Check component
+        id: check-component
+        shell: bash
+        run: |
+          case ${{ github.event.client_payload.component }} in
+            ui)
+              echo "app-dir=sourcify-ui" >> "$GITHUB_OUTPUT"
+              ;;
+            server)
+              echo "app-dir=sourcify-server" >> "$GITHUB_OUTPUT"
+              ;;
+            monitor)
+              echo "app-dir=sourcify-monitor" >> "$GITHUB_OUTPUT"
+              ;;
+            repository)
+              echo "app-dir=sourcify-repository" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "app-dir=unknown" >> "$GITHUB_OUTPUT"
+              exit 1
+              ;;
+          esac
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_DISPATCH_TOKEN }}
+      - name: Update values.yaml
+        uses: mikefarah/yq@6609ed76ecb69f9d8254345292d90ea72f641715
+        with:
+          cmd: >-
+            yq -i '.image.tag = "${{ github.event.client_payload.image_tag }}"'
+            "environments/${{ github.event.client_payload.environment }}/applications/${jobs.check-component.outputs.app-dir}/values.yaml"
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@1bad3abcf0d6ec49a5857d124b0bfb52dc7bb081
+        with:
+          message: >-
+            ci(${{ github.event.client_payload.environment }}): update ${{ github.event.client_payload.component }} - ${{ github.event.client_payload.ref }}/${{ github.event.client_payload.sha }}"
+          default_author: github_actions

@@ -11,7 +11,7 @@ jobs:
           IMAGE_TAG: ${{ github.event.client_payload.image_tag }}
           ENVIRONMENT: ${{ github.event.client_payload.environment }}
         run: |
-          echo $ENVIRONMENTS
+          echo $ENVIRONMENT
           echo $IMAGE_TAG
       - uses: actions/checkout@v3
         with:
