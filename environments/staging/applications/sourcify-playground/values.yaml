@@ -2,7 +2,8 @@ image:
   repository: skylenet/sourcify-playground
   tag: main-fa4e00a
   pullPolicy: IfNotPresent
-
+imagePullSecrets:
+  - name: image-pull-secret
 ##
 ## Application
 ##

@@ -2,7 +2,8 @@ image:
   repository: ethereum/source-verify
   tag: server-latest
   pullPolicy: IfNotPresent
-
+imagePullSecrets:
+  - name: image-pull-secret
 ##
 ## Application
 ##
