@@ -9,7 +9,7 @@ imagePullSecrets:
 ##
 controller:
   type: deployment
-  replicas: 2
+  replicas: 1
   strategy: RollingUpdate
 service:
   main:
