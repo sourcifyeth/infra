@@ -14,9 +14,22 @@ spec:
   ingressClassName: ingress-nginx-public
   tls:
     - hosts:
-        - "{{ .Values.domain }}"
+        - "{{ .Values.testdomain }}"
       secretName: ingress-sourcify-root
+    - hosts:
+        - "{{ .Values.domain }}"
+      secretName: ingress-sourcify-og-root
   rules:
+    - host: "{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-ui
+                port:
+                  number: 80
     - host: "{{ .Values.domain }}"
       http:
         paths:
@@ -46,9 +59,22 @@ spec:
   ingressClassName: ingress-nginx-public
   tls:
     - hosts:
-        - "{{ .Values.domain }}"
+        - "{{ .Values.testdomain }}"
       secretName: ingress-sourcify-root
+    - hosts:
+        - "{{ .Values.domain }}"
+      secretName: ingress-sourcify-og-root
   rules:
+    - host: "{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /server(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-server
+                port:
+                  number: 80
     - host: "{{ .Values.domain }}"
       http:
         paths:

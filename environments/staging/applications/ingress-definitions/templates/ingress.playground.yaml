@@ -10,9 +10,22 @@ spec:
   ingressClassName: ingress-nginx-public
   tls:
     - hosts:
-        - "playground.{{ .Values.domain }}"
+        - "playground.{{ .Values.testdomain }}"
       secretName: ingress-sourcify-playground
+    - hosts:
+        - "playground.{{ .Values.domain }}"
+      secretName: ingress-sourcify-og-playground
   rules:
+    - host: "playground.{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-playground
+                port:
+                  number: 80
     - host: "playground.{{ .Values.domain }}"
       http:
         paths:

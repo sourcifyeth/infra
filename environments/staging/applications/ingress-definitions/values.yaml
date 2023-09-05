@@ -1,2 +1,3 @@
 
-domain: "sourcify-staging.ethpandaops.io"
+testdomain: "sourcify-staging.ethpandaops.io"
+domain: "staging.sourcify.dev"
