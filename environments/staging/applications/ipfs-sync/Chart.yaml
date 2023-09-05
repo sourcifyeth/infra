@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
-description: This chart will help you to sync any directory to an S3 bucket
-name: s3-sync
+description: This chart will help you to sync any directory to IPFS
+name: ipfs-sync
 type: application
 version: 0.0.1
 kubeVersion: ">=1.22.0-0"
