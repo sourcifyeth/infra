@@ -12,12 +12,8 @@ command:
   - -acxe
   - >-
     echo "Start: $(date)";
-    hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts);
+    hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts --to-files /contracts);
     echo "End: $(date) - $hash";
-    echo "Removing /contracts from MFS";
-    ipfs --api "$IPFS_API" files rm -r /contracts;
-    ipfs --api "$IPFS_API" files cp -p /ipfs/$hash /contracts;
-    echo "Copied $hash to MFS at /contracts";
 
 controller:
   type: cronjob
