@@ -14,7 +14,7 @@ command:
     echo "Start: $(date)";
     hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts --to-files /contracts);
     echo "End: $(date) - $hash";
-
+    ipfs --api "$IPFS_API" files stat /contracts;
 controller:
   type: cronjob
   restartPolicy: Never
