@@ -26,8 +26,8 @@ command:
   - sh
   - -ac
   - >-
-    find /usr/share/nginx/html/ -type f -exec sed -i 's#staging.sourcify.dev#sourcify-staging.ethpandaops.io#g' {} \;;
-    find /usr/share/nginx/html/ -type f -exec sed -i 's#sourcify.dev#sourcify-staging.ethpandaops.io#g' {} \;;
+#    find /usr/share/nginx/html/ -type f -exec sed -i 's#staging.sourcify.dev#sourcify-staging.ethpandaops.io#g' {} \;;
+#    find /usr/share/nginx/html/ -type f -exec sed -i 's#sourcify.dev#sourcify-staging.ethpandaops.io#g' {} \;;
     /docker-entrypoint.sh nginx -g "daemon off;"
 args: []
 
