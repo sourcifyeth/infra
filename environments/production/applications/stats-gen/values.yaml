@@ -1,0 +1,78 @@
+image:
+  repository: bash
+  tag: "5.2.15"
+  pullPolicy: IfNotPresent
+
+##
+## Application
+##
+
+command:
+  - bash
+  - /scripts/generate.sh
+
+controller:
+  type: cronjob
+  restartPolicy: Never
+  cronjob:
+    concurrencyPolicy: Forbid
+    schedule: "0 13 * * *"
+    startingDeadlineSeconds: 30
+    successfulJobsHistory: 1
+    failedJobsHistory: 1
+    backoffLimit: 6
+
+configMaps:
+  scripts:
+    enabled: true
+    data:
+      generate.sh: |
+        #!/bin/bash
+        echo "Started stats generation $(date)"
+        REPOSITORY_PATH="/data"
+        CHAINS=$(find $REPOSITORY_PATH/contracts/full_match/ -mindepth 1 -maxdepth 1 -type d | rev | cut -d "/" -f1 | rev)
+
+        OUTPUT="{ "
+        for chainId in ${CHAINS}; do
+          OUTPUT="$OUTPUT  \"$chainId\": {"
+          OUTPUT="$OUTPUT    \"full_match\": $(find $REPOSITORY_PATH/contracts/full_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l),"
+          OUTPUT="$OUTPUT    \"partial_match\": $(find $REPOSITORY_PATH/contracts/partial_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l)"
+
+          if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]
+            then
+                OUTPUT="$OUTPUT  }"
+            else
+                OUTPUT="$OUTPUT  },"
+            fi
+
+        done
+        OUTPUT="$OUTPUT}"
+
+        echo "Finished stats generation $(date)"
+        echo $OUTPUT > $REPOSITORY_PATH/stats.json
+
+##
+## Data source
+##
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-xfs
+    mountPath: /data
+
+##
+## Environment configuration
+##
+
+env: {}
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: false
+    stringData: {}

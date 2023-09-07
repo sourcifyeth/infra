@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ingress-definitions
+description: All ingress definitions for Sourcify
+version: 0.0.1

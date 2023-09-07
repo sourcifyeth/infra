@@ -1,0 +1,87 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sourcify-root
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "30m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+spec:
+  ingressClassName: ingress-nginx-public
+  tls:
+    - hosts:
+        - "{{ .Values.testdomain }}"
+      secretName: ingress-sourcify-root
+    #- hosts:
+    #    - "{{ .Values.domain }}"
+    #  secretName: ingress-sourcify-og-root
+  rules:
+    - host: "{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-ui
+                port:
+                  number: 80
+    #- host: "{{ .Values.domain }}"
+    #  http:
+    #    paths:
+    #      - path: /
+    #        pathType: Prefix
+    #        backend:
+    #          service:
+    #            name: sourcify-ui
+    #            port:
+    #              number: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sourcify-root-server
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/proxy-body-size: "30m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+spec:
+  ingressClassName: ingress-nginx-public
+  tls:
+    - hosts:
+        - "{{ .Values.testdomain }}"
+      secretName: ingress-sourcify-root
+    #- hosts:
+    #    - "{{ .Values.domain }}"
+    #  secretName: ingress-sourcify-og-root
+  rules:
+    - host: "{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /server(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-server
+                port:
+                  number: 80
+    #- host: "{{ .Values.domain }}"
+    #  http:
+    #    paths:
+    #      - path: /server(/|$)(.*)
+    #        pathType: Prefix
+    #        backend:
+    #          service:
+    #            name: sourcify-server
+    #            port:
+    #              number: 80

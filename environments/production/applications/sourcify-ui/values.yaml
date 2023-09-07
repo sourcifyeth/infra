@@ -1,0 +1,92 @@
+image:
+  repository: ethereum/source-verify
+  tag: ui-stable
+  pullPolicy: IfNotPresent
+imagePullSecrets:
+  - name: image-pull-secret
+##
+## Application
+##
+
+controller:
+  type: deployment
+  replicas: 1
+  strategy: RollingUpdate
+
+service:
+  main:
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        port: 80
+
+command:
+  - sh
+  - -ac
+  - >-
+    find /usr/share/nginx/html/ -type f -exec sed -i 's#sourcify.dev#sourcify-production.ethpandaops.io#g' {} \;;
+    /docker-entrypoint.sh nginx -g "daemon off;"
+args: []
+
+##
+## Environment configuration
+##
+
+env:
+  SERVER_URL: https://sourcify-production.ethpandaops.io/server
+  REPOSITORY_SERVER_URL: https://repo.sourcify-production.ethpandaops.io
+  IPNS: repo.sourcify.dev
+  TAG: stable
+  AUTH0_ISSUERBASEURL: https://dev-htkreq1l71u1hn5l.us.auth0.com
+  AUTH0_CLIENTID: epipuQWJL67dVggPvxNmAy40ggzNum9F
+  AUTH0_AUDIENCE: https://sourcify.dev
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
+    stringData: {}
+      # INFURA_ID: ""
+      # ALCHEMY_ID: ""
+      # ALCHEMY_ID_OPTIMISM: ""
+      # ALCHEMY_ID_ARBITRUM: ""
+
+##
+## Health probes
+##
+
+probes:
+  liveness:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  readiness:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  startup:
+    enabled: true
+    spec:
+      initialDelaySeconds: 0
+      timeoutSeconds: 1
+      periodSeconds: 5
+      failureThreshold: 30
+
+##
+## Ingress
+##
+
+ingress:
+  main:
+    enabled: false

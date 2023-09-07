@@ -1,0 +1,38 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sourcify-repo
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: ingress-nginx-public
+  tls:
+    - hosts:
+        - "repo.{{ .Values.testdomain }}"
+      secretName: ingress-sourcify-repo
+    #- hosts:
+    #    - "repo.{{ .Values.domain }}"
+    #  secretName: ingress-sourcify-og-repo
+  rules:
+    - host: "repo.{{ .Values.testdomain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-repository
+                port:
+                  number: 80
+    #- host: "repo.{{ .Values.domain }}"
+    #  http:
+    #    paths:
+    #      - path: /
+    #        pathType: Prefix
+    #        backend:
+    #          service:
+    #            name: sourcify-repository
+    #            port:
+    #              number: 80

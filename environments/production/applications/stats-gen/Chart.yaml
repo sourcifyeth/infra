@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+description: Cronjob to generate the stats.json file
+name: stats-gen
+type: application
+version: 0.0.1
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts
+    version: 1.5.1
