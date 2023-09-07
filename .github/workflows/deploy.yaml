@@ -32,6 +32,12 @@ jobs:
             repository)
               echo "app-dir=sourcify-repository" >> "$GITHUB_OUTPUT"
               ;;
+            docs)
+              echo "app-dir=sourcify-docs" >> "$GITHUB_OUTPUT"
+              ;;
+            playground)
+              echo "app-dir=sourcify-playground" >> "$GITHUB_OUTPUT"
+              ;;
             *)
               echo "app-dir=unknown" >> "$GITHUB_OUTPUT"
               exit 1
