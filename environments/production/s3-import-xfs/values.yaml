@@ -1,0 +1,53 @@
+image:
+  repository: peakcom/s5cmd
+  tag: v2.1.0
+  pullPolicy: IfNotPresent
+
+##
+## Application
+##
+
+command:
+  - /s5cmd
+  - sync
+  - s3://sourcify-backup-s3/stable/repository/contracts/*
+  - /data/contracts
+
+controller:
+  type: cronjob
+  restartPolicy: Never
+  cronjob:
+    concurrencyPolicy: Forbid
+    schedule: "50 12 * * *"
+    startingDeadlineSeconds: 30
+    successfulJobsHistory: 1
+    failedJobsHistory: 1
+    backoffLimit: 6
+
+##
+## Data source
+##
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-xfs
+    mountPath: /data
+
+##
+## Environment configuration
+##
+
+env: {}
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: true
+    stringData:
+      AWS_ACCESS_KEY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#S3_SYNC_AWS_ACCESS_KEY_ID>"
+      AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#S3_SYNC_AWS_SECRET_ACCESS_KEY>"
