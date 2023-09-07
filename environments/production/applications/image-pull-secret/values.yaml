@@ -1,0 +1,3 @@
+imageCredentials:
+  - registry: "ghcr.io"
+    auth: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ghcr_pull_auth_b64>"
