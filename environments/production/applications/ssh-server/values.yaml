@@ -45,11 +45,11 @@ persistence:
     type: pvc
     existingClaim: sourcify-repository-xfs
     mountPath: /data/repository-xfs
-  compilers:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-compilers
-    mountPath: /data/compilers
+  #compilers:
+  #  enabled: true
+  #  type: pvc
+  #  existingClaim: sourcify-compilers
+  #  mountPath: /data/compilers
 
 ##
 ## Health probes
