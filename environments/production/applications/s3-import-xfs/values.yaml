@@ -9,6 +9,7 @@ image:
 
 command:
   - /usr/local/bin/aws
+  - s3
   - sync
   - s3://sourcify-backup-s3/stable/repository/contracts/
   - /data/contracts
@@ -18,7 +19,7 @@ controller:
   restartPolicy: Never
   cronjob:
     concurrencyPolicy: Forbid
-    schedule: "35 07 * * *"
+    schedule: "05 08 * * *"
     startingDeadlineSeconds: 30
     successfulJobsHistory: 1
     failedJobsHistory: 1
