@@ -2,6 +2,8 @@ ipfs-cluster:
   fullnameOverride: ipfs-gateway
   nameOverride: ipfs-gateway
   replicaCount: 1
+  p2pNodePort:
+    nodePort: 32100
   cluster:
     image:
       repository: ipfs/ipfs-cluster
@@ -28,4 +30,4 @@ ipfs-cluster:
       storageClassName: "do-block-storage-xfs"
       volumeSize: "100Gi"
 
-sharedSecret: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ipfs_gateway_shared_secret>"
+  sharedSecret: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ipfs_gateway_shared_secret>"
