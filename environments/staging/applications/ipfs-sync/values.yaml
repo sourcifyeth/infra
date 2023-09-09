@@ -9,8 +9,7 @@ image:
 initContainers:
   add-key:
     name: add-key
-    image: |-
-      {{ printf "%s:%s" .Values.image.repository .Values.image.tag | quote }}
+    image: "{{ printf "%s:%s" .Values.image.repository .Values.image.tag }}"
     command:
       - sh
       - -acxe
