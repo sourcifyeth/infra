@@ -1,0 +1,60 @@
+image:
+  repository: ipfs/kubo
+  tag: v0.21.0
+  pullPolicy: IfNotPresent
+
+##
+## Application
+##
+
+command:
+  - sh
+  - -acxe
+  - >-
+    echo "Start: $(date)";
+    hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts);
+    echo "End: $(date) - $hash";
+    echo "Start: $(date)";
+    ipfs --api "$IPFS_API" files rm -r /contracts;
+    echo "End: $(date) - $hash";
+    echo "Start: $(date)";
+    ipfs --api "$IPFS_API" files cp -p /ipfs/$hash /contracts;
+    echo "End: $(date) - $hash";
+    ipfs --api "$IPFS_API" files stat /contracts;
+controller:
+  type: cronjob
+  restartPolicy: Never
+  cronjob:
+    concurrencyPolicy: Forbid
+    schedule: "* * * * *"
+    startingDeadlineSeconds: 30
+    successfulJobsHistory: 1
+    failedJobsHistory: 1
+    backoffLimit: 3
+
+##
+## Data source
+##
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-xfs
+    mountPath: /data
+
+##
+## Environment configuration
+##
+
+env:
+  IPFS_API: /dns4/ipfs-ipfs-main-0.ipfs-ipfs-main.sourcify.svc.cluster.local/tcp/5001
+
+##
+## Secrets
+##
+
+secrets:
+  secretenv:
+    enabled: false
+    stringData: {}
