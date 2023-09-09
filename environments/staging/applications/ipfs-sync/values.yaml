@@ -15,7 +15,7 @@ initContainers:
       - sh
       - -acxe
       - >-
-        if ipfs key list | grep main; then
+        if ipfs --api "$IPFS_API" key list | grep main; then
           echo "key already exists. skipping import...";
         else
           ipfs --api "$IPFS_API" key import main /keys/ipns.key;
