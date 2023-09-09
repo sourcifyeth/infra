@@ -30,14 +30,6 @@ command:
   - sh
   - -acxe
   - >-
-    rootHash=$(ipfs --api "$IPFS_API" files stat /contracts | head -n 1);
-    echo "Publishing rootHash $rootHash under ipns key";
-    ipfs --api "$IPFS_API" -D name publish --key=main $rootHash;
-    echo "Published rootHash $rootHash under ipns key";
-commandFull:
-  - sh
-  - -acxe
-  - >-
     echo "Start: $(date)";
     hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts);
     echo "End: $(date) - $hash";
