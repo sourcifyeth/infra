@@ -15,7 +15,7 @@ command:
     hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts);
     echo "End: $(date) - $hash";
     echo "Start: $(date)";
-    ipfs --api "$IPFS_API" files rm -r /contracts;
+    ipfs --api "$IPFS_API" files rm -r /contracts || true;
     echo "End: $(date) - $hash";
     echo "Start: $(date)";
     ipfs --api "$IPFS_API" files cp -p /ipfs/$hash /contracts;
