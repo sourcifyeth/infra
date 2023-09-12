@@ -26,7 +26,6 @@ command:
   - sh
   - -ac
   - >-
-    find /usr/share/nginx/html/ -type f -exec sed -i 's#sourcify.dev#sourcify-production.ethpandaops.io#g' {} \;;
     /docker-entrypoint.sh nginx -g "daemon off;"
 args: []
 
