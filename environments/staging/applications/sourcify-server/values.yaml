@@ -31,6 +31,7 @@ env:
   SOLJSON_REPO: /data/compilers/soljson
   SERVER_PORT: "80"
   IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
+  IPFS_API: http://ipfs-ipfs-main:5001
   AUTH0_AUDIENCE: https://sourcify.dev
   AUTH0_ISSUERBASEURL: https://dev-htkreq1l71u1hn5l.us.auth0.com
   AUTH0_TOKENSIGNINGALG: RS256
