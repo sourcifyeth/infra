@@ -43,5 +43,17 @@ envFrom:
 
 {{- $_ := mergeOverwrite .Values (include "app-template.hardcodedValues" . | fromYaml) -}}
 
+{{/* Inject IPNS key secret volume mount */}}
+{{- define "ipfs-sync.ipnsSecretVolume" -}}
+enabled: "true"
+mountPath: "/keys/ipns.key"
+subPath: "ipns.key"
+type: "custom"
+volumeSpec:
+  secret:
+    secretName: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-ipns-secret
+{{- end -}}
+{{- $_ := set .Values.persistence "ipns-secret" (include "ipfs-sync.ipnsSecretVolume" . | fromYaml) -}}
+
 {{/* Render the templates */}}
 {{ include "bjw-s.common.loader.generate" . }}

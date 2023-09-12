@@ -6,6 +6,26 @@ image:
 ##
 ## Application
 ##
+initContainers:
+  add-key:
+    name: add-key
+    image: >-
+      {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+    command:
+      - sh
+      - -acxe
+      - >-
+        if ipfs --api "$IPFS_API" key list | grep main; then
+          echo "key already exists. skipping import...";
+        else
+          ipfs --api "$IPFS_API" key import main /keys/ipns.key;
+        fi
+    env:
+      IPFS_API: "{{ .Values.env.IPFS_API }}"
+    volumeMounts:
+      - name: ipns-secret
+        mountPath: /keys/ipns.key
+        subPath: ipns.key
 
 command:
   - sh
@@ -20,7 +40,11 @@ command:
     echo "Start: $(date)";
     ipfs --api "$IPFS_API" files cp -p /ipfs/$hash /contracts;
     echo "End: $(date) - $hash";
-    ipfs --api "$IPFS_API" files stat /contracts;
+    rootHash=$(ipfs --api "$IPFS_API" files stat / | head -n 1);
+    echo "Publishing rootHash $rootHash under ipns key";
+    ipfs --api "$IPFS_API" -D name publish --key=main $rootHash;
+    echo "Published rootHash $rootHash under ipns key";
+
 controller:
   type: cronjob
   restartPolicy: Never
