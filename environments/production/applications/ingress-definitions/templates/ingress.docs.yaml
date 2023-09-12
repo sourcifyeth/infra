@@ -12,9 +12,9 @@ spec:
     - hosts:
         - "docs.{{ .Values.testdomain }}"
       secretName: ingress-sourcify-docs
-    #- hosts:
-    #    - "docs.{{ .Values.domain }}"
-    #  secretName: ingress-sourcify-og-docs
+    - hosts:
+        - "docs.{{ .Values.domain }}"
+      secretName: ingress-sourcify-og-docs
   rules:
     - host: "docs.{{ .Values.testdomain }}"
       http:
@@ -26,13 +26,13 @@ spec:
                 name: sourcify-docs
                 port:
                   number: 80
-    #- host: "docs.{{ .Values.domain }}"
-    #  http:
-    #    paths:
-    #      - path: /
-    #        pathType: Prefix
-    #        backend:
-    #          service:
-    #            name: sourcify-docs
-    #            port:
-    #              number: 80
+    - host: "docs.{{ .Values.domain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-docs
+                port:
+                  number: 80

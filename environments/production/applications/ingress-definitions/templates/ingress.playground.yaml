@@ -12,9 +12,9 @@ spec:
     - hosts:
         - "playground.{{ .Values.testdomain }}"
       secretName: ingress-sourcify-playground
-    #- hosts:
-    #    - "playground.{{ .Values.domain }}"
-    #  secretName: ingress-sourcify-og-playground
+    - hosts:
+        - "playground.{{ .Values.domain }}"
+      secretName: ingress-sourcify-og-playground
   rules:
     - host: "playground.{{ .Values.testdomain }}"
       http:
@@ -26,13 +26,13 @@ spec:
                 name: sourcify-playground
                 port:
                   number: 80
-    #- host: "playground.{{ .Values.domain }}"
-    #  http:
-    #    paths:
-    #      - path: /
-    #        pathType: Prefix
-    #        backend:
-    #          service:
-    #            name: sourcify-playground
-    #            port:
-    #              number: 80
+    - host: "playground.{{ .Values.domain }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sourcify-playground
+                port:
+                  number: 80
