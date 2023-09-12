@@ -56,7 +56,6 @@ persistence:
     type: pvc
     existingClaim: sourcify-compilers
     mountPath: /data/compilers
-    readOnly: true
 ##
 ## Health probes
 ##
