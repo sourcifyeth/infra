@@ -43,8 +43,7 @@ envFrom:
 
 {{- $_ := mergeOverwrite .Values (include "app-template.hardcodedValues" . | fromYaml) -}}
 
-
-# Inject IPNS key secret volume mount
+{{/* Inject IPNS key secret volume mount */}}
 {{- define "ipfs-sync.ipnsSecretVolume" -}}
 enabled: "true"
 mountPath: "/keys/ipns.key"
