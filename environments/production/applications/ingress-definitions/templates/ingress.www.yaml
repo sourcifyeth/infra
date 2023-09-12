@@ -6,8 +6,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/server-snippet: |
-      return 301 $scheme://{{ .Values.domain }}$request_uri;
+    #nginx.ingress.kubernetes.io/server-snippet: |
+    #  return 301 $scheme://{{ .Values.domain }}$request_uri;
 spec:
   ingressClassName: ingress-nginx-public
   tls:
