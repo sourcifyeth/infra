@@ -65,6 +65,7 @@ secrets:
       OPTIMISMSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#OPTIMISMSCAN_API_KEY>"
       CRONOSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CRONOSCAN_API_KEY>"
       BASESCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#BASESCAN_API_KEY>"
+      COREDAO_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#COREDAO_API_KEY>"
 ##
 ## Data persistence
 ##
