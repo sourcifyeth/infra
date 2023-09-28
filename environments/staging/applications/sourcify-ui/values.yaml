@@ -52,10 +52,6 @@ secrets:
   secretenv:
     enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
     stringData: {}
-      # INFURA_ID: ""
-      # ALCHEMY_ID: ""
-      # ALCHEMY_ID_OPTIMISM: ""
-      # ALCHEMY_ID_ARBITRUM: ""
 
 ##
 ## Health probes

@@ -19,15 +19,6 @@ service:
 ## Environment configuration
 ##
 env:
-  MONITOR_PORT: "80"
-  MONITOR_FETCH_TIMEOUT: 300000
-  REPOSITORY_PATH: /data/repository
-  SOLC_REPO: /data/compilers/solc
-  SOLJSON_REPO: /data/compilers/soljson
-  IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
-  NODE_URL_MAINNET: https://rpc.mainnet.ethpandaops.io
-  NODE_URL_GOERLI: https://rpc.goerli.ethpandaops.io
-  NODE_URL_SEPOLIA: https://rpc.sepolia.ethpandaops.io
 ##
 ## Secrets
 ##
@@ -37,10 +28,10 @@ secrets:
     stringData:
       CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
-      INFURA_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_ID>"
-      ALCHEMY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID>"
-      ALCHEMY_ID_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_OPTIMISM>"
-      ALCHEMY_ID_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_ID_ARBITRUM>"
+      INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
+      ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
+      ALCHEMY_API_KEY_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_OPTIMISM>"
+      ALCHEMY_API_KEY_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_ARBITRUM>"
       FALLBACK_IPFS_GATEWAY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"
 ##
 ## Data persistence
