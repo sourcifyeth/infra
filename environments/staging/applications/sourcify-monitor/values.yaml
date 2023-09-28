@@ -30,9 +30,6 @@ secrets:
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
       INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
       ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
-      ALCHEMY_API_KEY_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_OPTIMISM>"
-      ALCHEMY_API_KEY_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_ARBITRUM>"
-      FALLBACK_IPFS_GATEWAY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"
 ##
 ## Data persistence
 ##
