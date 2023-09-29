@@ -21,11 +21,11 @@ envFrom:
   {{- end }}
 {{- end }}
 persistence:
-  config:
+  conf:
     enabled: true
     type: configMap
-    mountPath: /config
-    name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-config
+    mountPath: /conf
+    name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-conf
   {{- with .Values.persistence }}
   {{- toYaml . | nindent 2 }}
   {{- end }}

@@ -23,7 +23,7 @@ env: {}
 ## Config files / scripts
 ##
 configMaps:
-  config:
+  conf:
     enabled: true
     data:
       config.json: |
