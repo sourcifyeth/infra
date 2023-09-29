@@ -20,6 +20,15 @@ envFrom:
   {{- toYaml . | nindent 2 }}
   {{- end }}
 {{- end }}
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    mountPath: /config
+    name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-config
+  {{- with .Values.persistence }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
 {{- end -}}
 
 {{- $_ := mergeOverwrite .Values (include "app-template.hardcodedValues" . | fromYaml) -}}

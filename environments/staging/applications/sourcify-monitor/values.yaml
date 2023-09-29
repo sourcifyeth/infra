@@ -18,7 +18,23 @@ service:
 ##
 ## Environment configuration
 ##
-env:
+env: {}
+##
+## Config files / scripts
+##
+configMaps:
+  config:
+    enabled: true
+    data:
+      config.json: |
+        {
+          "decentralizedStorages": {
+            "ipfs": {
+              "gateways": ["http://ipfs-ipfs-gateway:8080/ipfs/"]
+            }
+          },
+          "sourcifyServerUrls": ["https://staging.sourcify.dev/server/"]
+        }
 ##
 ## Secrets
 ##
