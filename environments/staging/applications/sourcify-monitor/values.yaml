@@ -47,20 +47,6 @@ secrets:
       INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
       ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
 ##
-## Data persistence
-##
-persistence:
-  data:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-repository-xfs
-    mountPath: /data/repository
-  compilers:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-compilers
-    mountPath: /data/compilers
-##
 ## Health probes
 ##
 probes:
