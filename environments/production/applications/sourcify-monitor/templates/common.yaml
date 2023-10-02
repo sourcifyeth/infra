@@ -20,6 +20,15 @@ envFrom:
   {{- toYaml . | nindent 2 }}
   {{- end }}
 {{- end }}
+persistence:
+  conf:
+    enabled: true
+    type: configMap
+    mountPath: /home/app/services/monitor
+    name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-conf
+  {{- with .Values.persistence }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
 {{- end -}}
 
 {{- $_ := mergeOverwrite .Values (include "app-template.hardcodedValues" . | fromYaml) -}}
