@@ -30,7 +30,7 @@ configMaps:
         {
           "decentralizedStorages": {
             "ipfs": {
-              "gateways": ["http://ipfs-ipfs-gateway:8080/ipfs/"]
+              "gateways": ["http://ipfs-ipfs-gateway:8080/ipfs/", "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"]
             }
           },
           "sourcifyServerUrls": ["https://staging.sourcify.dev/server/"]
