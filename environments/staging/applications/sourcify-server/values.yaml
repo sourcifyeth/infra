@@ -86,7 +86,13 @@ persistence:
 probes:
   liveness:
     enabled: true
+    custom: true
     spec:
+      exec:
+        command:
+          - /bin/sh
+          - -c
+          - ls /data/repository/
       initialDelaySeconds: 0
       periodSeconds: 10
       timeoutSeconds: 1
