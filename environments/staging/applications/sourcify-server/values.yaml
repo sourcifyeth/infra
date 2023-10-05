@@ -92,7 +92,7 @@ probes:
         command:
           - /bin/sh
           - -c
-          - ls /data/repository/
+          - ls /data/repository/ && ls /data/compilers/
       initialDelaySeconds: 0
       periodSeconds: 10
       timeoutSeconds: 1
