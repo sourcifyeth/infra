@@ -43,10 +43,10 @@ ipfs-cluster:
       tag: "v0.21.0"
     resources:
       requests:
-        cpu: 3200m
+        cpu: 2000m
         memory: 4000Mi
       limits:
-        cpu: 2000m
+        cpu: 3200m
         memory: 5500Mi
     nodeSelector:
       dedicated: ipfs-main
