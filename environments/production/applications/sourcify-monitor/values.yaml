@@ -44,6 +44,8 @@ secrets:
     stringData:
       CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
+      INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
+      ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
       # NOTE: Remove the following vars after https://github.com/ethereum/sourcify/pull/1187 gets released
       INFURA_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
       ALCHEMY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
