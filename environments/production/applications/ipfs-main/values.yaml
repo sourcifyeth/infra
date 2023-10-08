@@ -9,10 +9,29 @@ ipfs-cluster:
       repository: ipfs/ipfs-cluster
       pullPolicy: IfNotPresent
       tag: "1.0.6"
-      resources: {}
-      nodeSelector: {}
-      tolerations: []
-      affinity: {}
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+    nodeSelector:
+      dedicated: ipfs-main
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "ipfs-main"
+        effect: "NoSchedule"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: dedicated
+              operator: In
+              values:
+              - ipfs-main
     storage:
       storageClassName: "do-block-storage"
       volumeSize: "2Gi"
@@ -22,10 +41,29 @@ ipfs-cluster:
       repository: ipfs/kubo
       pullPolicy: IfNotPresent
       tag: "v0.21.0"
-      resources: {}
-      nodeSelector: {}
-      tolerations: []
-      affinity: {}
+    resources:
+      requests:
+        cpu: 6500m
+        memory: 10000Mi
+      limits:
+        cpu: 7200m
+        memory: 12500Mi
+    nodeSelector:
+      dedicated: ipfs-main
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "ipfs-main"
+        effect: "NoSchedule"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: dedicated
+              operator: In
+              values:
+              - ipfs-main
     storage:
       storageClassName: "do-block-storage-xfs"
       volumeSize: "100Gi"
