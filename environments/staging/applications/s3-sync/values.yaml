@@ -10,10 +10,10 @@ image:
 resources:
   limits:
     cpu: 1000m
-    memory: 1024Mi
+    memory: 2500Mi
   requests:
     cpu: 500m
-    memory: 1024Mi
+    memory: 2000Mi
 
 command:
   - /s5cmd
