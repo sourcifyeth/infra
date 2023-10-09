@@ -32,7 +32,7 @@ configMaps:
               "gateways": ["http://ipfs-ipfs-gateway:8080/ipfs/", "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"]
             }
           },
-          "sourcifyServerUrls": ["http://sourcify-server/"]
+          "sourcifyServerURLs": ["http://sourcify-server/"]
         }
 ##
 ## Secrets
