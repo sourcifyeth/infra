@@ -7,7 +7,6 @@ imagePullSecrets:
 ##
 ## Application
 ##
-
 controller:
   type: statefulset
   replicas: 1
@@ -33,7 +32,7 @@ configMaps:
               "gateways": ["http://ipfs-ipfs-gateway:8080/ipfs/", "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"]
             }
           },
-          "sourcifyServerUrls": ["https://sourcify.dev/server/"]
+          "sourcifyServerURLs": ["http://sourcify-server/"]
         }
 ##
 ## Secrets
@@ -46,12 +45,6 @@ secrets:
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
       INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
       ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
-      # NOTE: Remove the following vars after https://github.com/ethereum/sourcify/pull/1187 gets released
-      INFURA_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
-      ALCHEMY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
-      ALCHEMY_ID_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_OPTIMISM>"
-      ALCHEMY_ID_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_ARBITRUM>"
-      FALLBACK_IPFS_GATEWAY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_IPFS_GATEWAY>"
 ##
 ## Health probes
 ##

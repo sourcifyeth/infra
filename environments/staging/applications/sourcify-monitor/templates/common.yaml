@@ -24,7 +24,7 @@ persistence:
   conf:
     enabled: true
     type: configMap
-    mountPath: /home/app/services/monitor/config.json
+    mountPath: /home/app/services/monitor/
     subPath: config.json
     name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-conf
   {{- with .Values.persistence }}
