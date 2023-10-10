@@ -1,6 +1,6 @@
 image:
   repository: ethereum/source-verify
-  tag: ui-stable@sha256:56cb21f76f5490a7d914e96c17ffb07d5dad3c557e5b946473236d2e8b545687
+  tag: ui-stable@sha256:c632eabd3123271c167ed58237d6446245225107b4035b9533995e9d44d3cc09
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -12,7 +12,6 @@ controller:
   type: deployment
   replicas: 1
   strategy: RollingUpdate
-
 service:
   main:
     enabled: true
@@ -21,18 +20,15 @@ service:
     ports:
       http:
         port: 80
-
 command:
   - sh
   - -ac
   - >-
     /docker-entrypoint.sh nginx -g "daemon off;"
 args: []
-
 ##
 ## Environment configuration
 ##
-
 env:
   SERVER_URL: https://sourcify-production.ethpandaops.io/server
   REPOSITORY_SERVER_URL: https://repo.sourcify-production.ethpandaops.io
@@ -41,24 +37,20 @@ env:
   AUTH0_ISSUERBASEURL: https://dev-htkreq1l71u1hn5l.us.auth0.com
   AUTH0_CLIENTID: epipuQWJL67dVggPvxNmAy40ggzNum9F
   AUTH0_AUDIENCE: https://sourcify.dev
-
 ##
 ## Secrets
 ##
-
 secrets:
   secretenv:
     enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
     stringData: {}
-      # INFURA_ID: ""
-      # ALCHEMY_ID: ""
-      # ALCHEMY_ID_OPTIMISM: ""
-      # ALCHEMY_ID_ARBITRUM: ""
-
+    # INFURA_ID: ""
+    # ALCHEMY_ID: ""
+    # ALCHEMY_ID_OPTIMISM: ""
+    # ALCHEMY_ID_ARBITRUM: ""
 ##
 ## Health probes
 ##
-
 probes:
   liveness:
     enabled: true
@@ -81,11 +73,9 @@ probes:
       timeoutSeconds: 1
       periodSeconds: 5
       failureThreshold: 30
-
 ##
 ## Ingress
 ##
-
 ingress:
   main:
     enabled: false
