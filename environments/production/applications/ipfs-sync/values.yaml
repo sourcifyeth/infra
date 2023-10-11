@@ -32,7 +32,7 @@ command:
   - -acxe
   - >-
     echo "Start: $(date)";
-    hash=$(ipfs --api "$IPFS_API" add -Q -r /data/contracts);
+    hash=$(ipfs --api "$IPFS_API" add -r /data/contracts);
     echo "End: $(date) - $hash";
     echo "Start: $(date)";
     ipfs --api "$IPFS_API" files rm -r /contracts || true;
