@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/sourcifyeth/docs
-  tag: main@sha256:1c09f5363947d283d62f988aef4b40623d60c8e4658329ed6f3c7795d85f196c
+  tag: main@sha256:57e7775c13d0de29676a8780f39cbd72ea731cb075a62773d63795fe8278bb1a
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
