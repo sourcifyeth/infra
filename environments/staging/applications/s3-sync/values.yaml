@@ -1,6 +1,6 @@
 image:
-  repository: peakcom/s5cmd
-  tag: v2.1.0
+  repository: amazon/aws-cli
+  tag: "2.13.16@sha256:f866c465ab43bea61009ef3782e033e15e39a4acdf7aa6c38f26b43e59bd15ab"
   pullPolicy: IfNotPresent
 
 ##
@@ -16,9 +16,10 @@ resources:
     memory: 2000Mi
 
 command:
-  - /s5cmd
+  - /usr/local/bin/aws
+  - s3
   - sync
-  - /data/contracts/
+  - /data/contracts
   - s3://sourcify-backup-s3/latest/repository/contracts/
 
 controller:
@@ -26,7 +27,7 @@ controller:
   restartPolicy: Never
   cronjob:
     concurrencyPolicy: Forbid
-    schedule: "00 12 * * *"
+    schedule: "* * * * *"
     startingDeadlineSeconds: 30
     successfulJobsHistory: 1
     failedJobsHistory: 1
