@@ -9,7 +9,13 @@ ipfs-cluster:
       repository: ipfs/ipfs-cluster
       pullPolicy: IfNotPresent
       tag: "1.0.6"
-    resources: {}
+    resources:
+      requests:
+        cpu: "0.05"
+        memory: 256Mi
+      limits:
+        cpu: "0.1"
+        memory: 256Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
@@ -22,7 +28,13 @@ ipfs-cluster:
       repository: ipfs/kubo
       pullPolicy: IfNotPresent
       tag: "v0.21.0"
-    resources: {}
+    resources:
+      requests:
+        cpu: "1.5"
+        memory: 2500Mi
+      limits:
+        cpu: "2"
+        memory: 2800Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}

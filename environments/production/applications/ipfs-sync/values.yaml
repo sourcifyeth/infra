@@ -6,6 +6,15 @@ image:
 ##
 ## Application
 ##
+
+resources:
+  limits:
+    cpu: "0.35"
+    memory: 2500Mi
+  requests:
+    cpu: "0.3"
+    memory: 2000Mi
+
 initContainers:
   add-key:
     name: add-key

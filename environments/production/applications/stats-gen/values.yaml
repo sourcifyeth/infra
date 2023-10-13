@@ -6,7 +6,13 @@ image:
 ##
 ## Application
 ##
-
+resources:
+  limits:
+    cpu: "0.1"
+    memory: "1400Mi"
+  requests:
+    cpu: "0.1"
+    memory: "1200Mi"
 command:
   - bash
   - /scripts/generate.sh

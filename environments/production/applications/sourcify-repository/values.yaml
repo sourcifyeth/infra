@@ -7,6 +7,13 @@ imagePullSecrets:
 ##
 ## Application
 ##
+resources:
+  limits:
+    cpu: "0.03"
+    memory: 100Mi
+  requests:
+    cpu: "0.01"
+    memory: 80Mi
 
 controller:
   type: deployment
