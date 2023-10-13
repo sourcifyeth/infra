@@ -25,7 +25,13 @@ ipfs-cluster:
     resources: {}
     nodeSelector: {}
     tolerations: []
-    affinity: {}
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                release: nfs-server-provisioner-xfs # Avoid running the IPFS node on the same node as the nfs server
     storage:
       storageClassName: "do-block-storage-xfs"
       volumeSize: "100Gi"
