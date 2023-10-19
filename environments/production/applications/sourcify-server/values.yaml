@@ -1,6 +1,6 @@
 image:
   repository: ethereum/source-verify
-  tag: server-stable@sha256:9d214970675c0f6ea07ace7edf817026c75d373819f929e804e5244cab940996
+  tag: server-stable@sha256:010429d7b70f39f6a3cd75706a902361d1c2d89c4ed4f48b070866e8bfacfceb
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
