@@ -1,6 +1,6 @@
 image:
   repository: ethereum/source-verify
-  tag: monitor-latest@sha256:3a052a15e13c1d6267790d55838768cf3c9c9837007f28daa9cc73580944c753
+  tag: monitor-latest@sha256:b6de56223296bc6a1f81763a2d7b19386caca6de8fa7bc5c5d94947fc6db43da
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -47,7 +47,6 @@ secrets:
       ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
       ALCHEMY_API_KEY_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_OPTIMISM>"
       ALCHEMY_API_KEY_ARBITRUM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_ARBITRUM>"
-
 ##
 ## Health probes
 ##
