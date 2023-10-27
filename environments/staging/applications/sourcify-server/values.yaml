@@ -92,10 +92,13 @@ probes:
         command:
           - /bin/sh
           - -c
-          - ls /data/repository/ && ls /data/compilers/
+          - >-
+            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/80' &&
+            ls /data/repository/ &&
+            ls /data/compilers/
       initialDelaySeconds: 0
       periodSeconds: 10
-      timeoutSeconds: 1
+      timeoutSeconds: 2
       failureThreshold: 3
   readiness:
     enabled: true
