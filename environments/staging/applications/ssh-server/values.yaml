@@ -53,12 +53,12 @@ persistence:
   data-new:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository-xfs
+    existingClaim: sourcify-repository-default-xfs
     mountPath: /data/repository-new
   compilers-new:
     enabled: true
     type: pvc
-    existingClaim: sourcify-compilers
+    existingClaim: sourcify-compilers-default
     mountPath: /data/compiler-new
 
 ##
