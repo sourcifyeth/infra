@@ -15,6 +15,8 @@ command:
   - /data/contracts
 
 controller:
+  labels:
+    volumeAffinity: sourcify
   type: cronjob
   restartPolicy: Never
   cronjob:
@@ -24,6 +26,18 @@ controller:
     successfulJobsHistory: 1
     failedJobsHistory: 1
     backoffLimit: 6
+
+affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: volumeAffinity
+              operator: In
+              values:
+                - sourcify
+        topologyKey: kubernetes.io/hostname
+
 
 ##
 ## Data source

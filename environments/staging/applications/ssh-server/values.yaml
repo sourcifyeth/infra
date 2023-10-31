@@ -17,6 +17,22 @@ service:
         protocol: TCP
         nodePort: 31000
 
+controller:
+  labels:
+    volumeAffinity: sourcify
+
+affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: volumeAffinity
+              operator: In
+              values:
+                - sourcify
+        topologyKey: kubernetes.io/hostname
+
+
 ##
 ## Environment configuration
 ##
