@@ -23,7 +23,7 @@ controller:
 
 affinity:
   podAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
+    preferredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
             - key: volumeAffinity
