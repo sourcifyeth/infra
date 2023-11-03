@@ -31,8 +31,10 @@ ipfs-cluster:
     initScripts:
       000-migration.sh: |-
         #!/bin/sh
-        wget https://dist.ipfs.tech/fs-repo-migrations/v2.0.2/fs-repo-migrations_v2.0.2_linux-amd64.tar.gz
-        tar -xzvf fs-repo-migrations_v2.0.2_linux-amd64.tar.gz
+        set -xe
+        cd /tmp
+        wget https://dist.ipfs.tech/fs-repo-migrations/v2.0.2/fs-repo-migrations_v2.0.2_linux-amd64.tar.gz  -O migrations.tar.gz
+        tar -xzvf migrations.tar.gz
         ./fs-repo-migrations/fs-repo-migrations
       001-peers.sh: |-
         #!/bin/sh
