@@ -29,6 +29,11 @@ ipfs-cluster:
       - --agent-version-suffix=docker
       - --enable-gc
     initScripts:
+      000-migration.sh: |-
+        #!/bin/sh
+        wget https://dist.ipfs.tech/fs-repo-migrations/v2.0.2/fs-repo-migrations_v2.0.2_linux-amd64.tar.gz
+        tar -xzvf fs-repo-migrations_v2.0.2_linux-amd64.tar.gz
+        ./fs-repo-migrations/fs-repo-migrations
       001-peers.sh: |-
         #!/bin/sh
         set -xe
