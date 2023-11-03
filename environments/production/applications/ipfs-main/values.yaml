@@ -40,7 +40,7 @@ ipfs-cluster:
     image:
       repository: ipfs/kubo
       pullPolicy: IfNotPresent
-      tag: "v0.22.0"
+      tag: "v0.23.0"
     resources:
       requests:
         cpu: 6500m
@@ -54,6 +54,13 @@ ipfs-cluster:
       - --agent-version-suffix=docker
       - --enable-gc
     initScripts:
+      000-migration.sh: |-
+        #!/bin/sh
+        set -xe
+        cd /tmp
+        wget https://dist.ipfs.tech/fs-repo-migrations/v2.0.2/fs-repo-migrations_v2.0.2_linux-amd64.tar.gz  -O migrations.tar.gz
+        tar -xzvf migrations.tar.gz
+        ./fs-repo-migrations/fs-repo-migrations -y
       001-peers.sh: |-
         #!/bin/sh
         set -xe
