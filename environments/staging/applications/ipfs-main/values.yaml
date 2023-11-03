@@ -48,6 +48,19 @@ ipfs-cluster:
       limits:
         cpu: 3200m
         memory: 5500Mi
+    initContainers:
+      # Due to https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes
+      - image: busybox:1.36
+        securityContext:
+          privileged: true
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sysctl -w net.core.rmem_max=2500000
+          sysctl -w net.core.wmem_max=2500000
+        imagePullPolicy: IfNotPresent
+        name: init-sysctl
     extraArgs:
       - daemon
       - --migrate=true
