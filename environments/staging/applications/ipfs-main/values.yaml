@@ -64,6 +64,8 @@ ipfs-cluster:
         ipfs config Datastore.StorageGCWatermark 90 --json
         ipfs config Datastore.StorageMax "60GB"
         ipfs config Datastore.GCPeriod "6h"
+      003-other.sh: |-
+        ipfs config Routing.AcceleratedDHTClient true
     nodeSelector:
       dedicated: ipfs-main
     tolerations:
