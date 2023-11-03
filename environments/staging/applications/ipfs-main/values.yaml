@@ -40,7 +40,7 @@ ipfs-cluster:
     image:
       repository: ipfs/kubo
       pullPolicy: IfNotPresent
-      tag: "v0.23.0"
+      tag: "v0.21.0"
     resources:
       requests:
         cpu: 2000m
