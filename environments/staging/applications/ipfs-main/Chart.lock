@@ -1,6 +1,6 @@
 dependencies:
 - name: ipfs-cluster
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.1.7
-digest: sha256:3745d62d5beb212a8317f1971f0bbf0ce446865c63fabc981dbb732ec1b08903
-generated: "2023-09-09T23:44:49.005183+02:00"
+  version: 0.1.9
+digest: sha256:df1847431ecee3c5ec854a65ca1e899fddf24627e1b685ca14bad32d45e854c0
+generated: "2023-11-03T14:59:21.959178+01:00"
