@@ -48,13 +48,6 @@ ipfs-cluster:
       limits:
         cpu: 3200m
         memory: 5500Mi
-    podSecurityContext:
-      sysctls:
-        # Due to https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes
-        - name: net.core.rmem_max
-          value: "2500000"
-        - name: net.core.wmem_max
-          value: "2500000"
     extraArgs:
       - daemon
       - --migrate=true
