@@ -67,6 +67,9 @@ secrets:
       COREDAO_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#COREDAO_API_KEY>"
       CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
+      AWS_REGION: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_REGION>"
+      AWS_ACCESS_KEY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_ACCESS_KEY_ID>"
+      AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_SECRET_ACCESS_KEY>"
 ##
 ## Data persistence
 ##
