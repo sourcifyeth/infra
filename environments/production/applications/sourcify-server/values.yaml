@@ -46,6 +46,7 @@ env:
   NODE_URL_GOERLI: https://rpc.goerli.ethpandaops.io
   NODE_URL_SEPOLIA: https://rpc.sepolia.ethpandaops.io
   SOLIDITY_COMPILER: lambda
+  AWS_LAMBDA_FUNCTION: compile-production
 ##
 ## Secrets
 ##
