@@ -1,6 +1,6 @@
 image:
   repository: ethereum/source-verify
-  tag: server-stable@sha256:8524adb1648f188a95abb00882261221c8d09d62cb51784f3377f8e5e5d1b911
+  tag: server-stable@sha256:d3cc9f706b46d45aced3a43cf87b6623999eb724ef3833ac601068327d106798
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -103,9 +103,7 @@ probes:
           - /bin/sh
           - -c
           - >-
-            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/80' &&
-            ls /data/repository/ &&
-            ls /data/compilers/
+            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/80' && ls /data/repository/ && ls /data/compilers/
       initialDelaySeconds: 0
       periodSeconds: 10
       timeoutSeconds: 2
