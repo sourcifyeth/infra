@@ -30,6 +30,7 @@ service:
 ## Environment configuration
 ##
 env:
+  TAG: stable
   REPOSITORY_PATH: /data/repository
   REPOSITORY_SERVER_URL: https://repo.sourcify.dev
   # REPOSITORY_SERVER_URL: https://repo.sourcify-production.ethpandaops.io
