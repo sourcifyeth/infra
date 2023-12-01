@@ -1,6 +1,6 @@
 image:
-  repository: ethereum/source-verify
-  tag: repository-latest
+  repository: ghcr.io/ethereum/sourcify/repository
+  tag: latest
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret

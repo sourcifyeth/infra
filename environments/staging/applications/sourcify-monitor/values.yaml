@@ -1,6 +1,6 @@
 image:
-  repository: ethereum/source-verify
-  tag: monitor-latest@sha256:f05334683b1a296c86102970430f44edd412a7ccb2ab1c53b0a9d238e8a582e3
+  repository: ghcr.io/ethereum/sourcify/monitor
+  tag: staging@sha256:f05334683b1a296c86102970430f44edd412a7ccb2ab1c53b0a9d238e8a582e3
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
