@@ -25,11 +25,11 @@ service:
 ##
 env:
   TAG: latest
-  REPOSITORY_PATH: /data/repository
+  REPOSITORY_PATH: /home/app/repository
   REPOSITORY_SERVER_URL: https://repo.staging.sourcify.dev
   #REPOSITORY_SERVER_URL: https://repo.sourcify-staging.ethpandaops.io
-  SOLC_REPO: /data/compilers/solc
-  SOLJSON_REPO: /data/compilers/soljson
+  SOLC_REPO: /home/app/compilers/solc
+  SOLJSON_REPO: /home/app/compilers/soljson
   SERVER_PORT: "8080"
   IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
   IPFS_API: http://ipfs-ipfs-main:5001
@@ -79,12 +79,12 @@ persistence:
     enabled: true
     type: pvc
     existingClaim: sourcify-repository-xfs
-    mountPath: /data/repository
+    mountPath: /home/app/repository
   compilers:
     enabled: true
     type: pvc
     existingClaim: sourcify-compilers
-    mountPath: /data/compilers
+    mountPath: /home/app/compilers
 ##
 ## Health probes
 ##
@@ -98,7 +98,7 @@ probes:
           - /bin/sh
           - -c
           - >-
-            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/8080' && ls /data/repository/ && ls /data/compilers/
+            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/8080' && ls /home/app/repository/ && ls /home/app/compilers/
       initialDelaySeconds: 0
       periodSeconds: 10
       timeoutSeconds: 2
