@@ -1,5 +1,7 @@
 name: Deploy
-concurrency: single
+concurrency:
+  group: ${{ github.event.client_payload.environment }}-${{ github.event.client_payload.component }}
+  cancel-in-progress: true
 on:
   repository_dispatch:
     types:
