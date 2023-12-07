@@ -19,7 +19,7 @@ service:
     type: ClusterIP
     ports:
       http:
-        port: 80
+        port: 8080
 ##
 ## Environment configuration
 ##
@@ -30,7 +30,7 @@ env:
   #REPOSITORY_SERVER_URL: https://repo.sourcify-staging.ethpandaops.io
   SOLC_REPO: /data/compilers/solc
   SOLJSON_REPO: /data/compilers/soljson
-  SERVER_PORT: "80"
+  SERVER_PORT: "8080"
   IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
   IPFS_API: http://ipfs-ipfs-main:5001
   AUTH0_AUDIENCE: https://sourcify.dev
