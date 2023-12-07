@@ -74,7 +74,7 @@ spec:
               service:
                 name: sourcify-server
                 port:
-                  number: 80
+                  number: 8080
     - host: "{{ .Values.domain }}"
       http:
         paths:
@@ -84,4 +84,4 @@ spec:
               service:
                 name: sourcify-server
                 port:
-                  number: 80
+                  number: 8080
