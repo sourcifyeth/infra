@@ -98,7 +98,7 @@ probes:
           - /bin/sh
           - -c
           - >-
-            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/8080' && ls /home/app/repository/ && ls /home/app/compilers/
+            timeout 1 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/80' && ls /home/app/repository/ && ls /home/app/compilers/
       initialDelaySeconds: 0
       periodSeconds: 10
       timeoutSeconds: 2
