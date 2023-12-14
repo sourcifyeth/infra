@@ -17,20 +17,20 @@ service:
         protocol: TCP
         nodePort: 31000
 
-controller:
-  labels:
-    volumeAffinity: sourcify
-
-affinity:
-  podAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: volumeAffinity
-              operator: In
-              values:
-                - sourcify
-        topologyKey: kubernetes.io/hostname
+#controller:
+#  labels:
+#    volumeAffinity: sourcify
+#
+#affinity:
+#  podAffinity:
+#    requiredDuringSchedulingIgnoredDuringExecution:
+#      - labelSelector:
+#          matchExpressions:
+#            - key: volumeAffinity
+#              operator: In
+#              values:
+#                - sourcify
+#        topologyKey: kubernetes.io/hostname
 
 
 ##
@@ -66,16 +66,16 @@ persistence:
     type: pvc
     existingClaim: sourcify-compilers
     mountPath: /data/compilers
-  data-new:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-repository-default-xfs
-    mountPath: /data/repository-new
-  compilers-new:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-compilers-default
-    mountPath: /data/compiler-new
+  #data-new:
+  #  enabled: true
+  #  type: pvc
+  #  existingClaim: sourcify-repository-default-xfs
+  #  mountPath: /data/repository-new
+  #compilers-new:
+  #  enabled: true
+  #  type: pvc
+  #  existingClaim: sourcify-compilers-default
+  #  mountPath: /data/compiler-new
 
 ##
 ## Health probes
