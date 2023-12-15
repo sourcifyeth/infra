@@ -26,6 +26,8 @@ service:
 env:
   IPFS_GATEWAY: http://ipfs-ipfs-gateway:8080/ipfs/
   IPFS_API: http://ipfs-ipfs-main:5001
+  NODE_ENV: production
+  NODE_CONFIG_ENV: staging
 ##
 ## Secrets
 ##
