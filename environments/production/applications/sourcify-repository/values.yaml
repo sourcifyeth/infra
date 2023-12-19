@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/repository
-  tag: master@sha256:4983c233bd34aab023e5d2c021a8cb48ff3f89836365c0dc0efaecc7ac0e4b39
+  tag: master@sha256:f40b35b3981de85b1979a8e3a1ee1c9d5932f0dbb5c66b1bafbecb4a6ad2d5b2
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -14,12 +14,10 @@ resources:
   requests:
     cpu: "0.01"
     memory: 80Mi
-
 controller:
   type: deployment
   replicas: 1
   strategy: RollingUpdate
-
 service:
   main:
     enabled: true
@@ -28,39 +26,29 @@ service:
     ports:
       http:
         port: 80
-
 ##
 ## Environment configuration
 ##
-
 env: {}
-
 ##
 ## Secrets
 ##
-
 secrets:
   secretenv:
     enabled: false # If enabled, a Secret will be created and imported via envFrom into the main application.
     stringData: {}
-
-
 ##
 ## Data persistence
 ##
-
 persistence:
   data:
     enabled: true
     type: pvc
     existingClaim: sourcify-repository-xfs
     mountPath: /data
-
-
 ##
 ## Health probes
 ##
-
 probes:
   liveness:
     enabled: true
@@ -89,11 +77,9 @@ probes:
       timeoutSeconds: 1
       periodSeconds: 5
       failureThreshold: 30
-
 ##
 ## Ingress
 ##
-
 ingress:
   main:
     enabled: false
