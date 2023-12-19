@@ -1,6 +1,6 @@
 image:
-  repository: ethereum/source-verify
-  tag: repository-stable@sha256:362c69d623d18db0a2e4d44daadf7600e7c47ae9c3c2a6c132b41ef2b11b5e70
+  repository: ghcr.io/ethereum/sourcify/repository
+  tag: master@sha256:4983c233bd34aab023e5d2c021a8cb48ff3f89836365c0dc0efaecc7ac0e4b39
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret

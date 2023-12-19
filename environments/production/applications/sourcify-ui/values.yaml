@@ -1,6 +1,6 @@
 image:
-  repository: ethereum/source-verify
-  tag: ui-stable@sha256:e12f35732c897a957984f9259a0ce0e0a7183edeead75201475681ef5ed98205
+  repository: ghcr.io/ethereum/sourcify/ui
+  tag: master@sha256:4983c233bd34aab023e5d2c021a8cb48ff3f89836365c0dc0efaecc7ac0e4b39
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -36,13 +36,6 @@ args: []
 ## Environment configuration
 ##
 env:
-  SERVER_URL: https://sourcify-production.ethpandaops.io/server
-  REPOSITORY_SERVER_URL: https://repo.sourcify-production.ethpandaops.io
-  IPNS: repo.sourcify.dev
-  TAG: stable
-  AUTH0_ISSUERBASEURL: https://dev-htkreq1l71u1hn5l.us.auth0.com
-  AUTH0_CLIENTID: epipuQWJL67dVggPvxNmAy40ggzNum9F
-  AUTH0_AUDIENCE: https://sourcify.dev
 ##
 ## Secrets
 ##

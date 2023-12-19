@@ -1,9 +1,10 @@
 image:
-  repository: ethereum/source-verify
-  tag: monitor-stable@sha256:3a02fb5ede2fc445d2f11e061c30a52ee8497e7868008be569486617e3920fb2
+  repository: ghcr.io/ethereum/sourcify/monitor
+  tag: master@sha256:2daccdac21f746fc9f0586e99fc29e8cabca45c0a013379e5c046299e372fd98
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
+
 ##
 ## Application
 ##
