@@ -19,6 +19,26 @@ service:
     ports:
       http:
         port: 80
+
+##
+## Run pod on a specific node
+##
+nodeSelector:
+  dedicated: sourcify-static
+tolerations:
+  - key: "dedicated"
+    operator: "Equal"
+    value: "sourcify-static"
+    effect: "NoSchedule"
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: dedicated
+          operator: In
+          values:
+          - sourcify-static
 ##
 ## Environment configuration
 ##
@@ -71,6 +91,16 @@ persistence:
     type: pvc
     existingClaim: sourcify-compilers
     mountPath: /home/app/compilers
+  data-new:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-default-xfs
+    mountPath: /data/repository-new
+  compilers-new:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-compilers-default
+    mountPath: /data/compilers-new
 ##
 ## Health probes
 ##
