@@ -17,6 +17,9 @@ service:
         protocol: TCP
         nodePort: 31000
 
+nodeSelector:
+  kubernetes.io/hostname: sourcify-staging-ams3-main-pool-yjhkl
+
 #controller:
 #  labels:
 #    volumeAffinity: sourcify
@@ -66,16 +69,16 @@ persistence:
     type: pvc
     existingClaim: sourcify-compilers
     mountPath: /data/compilers
-  #data-new:
-  #  enabled: true
-  #  type: pvc
-  #  existingClaim: sourcify-repository-default-xfs
-  #  mountPath: /data/repository-new
-  #compilers-new:
-  #  enabled: true
-  #  type: pvc
-  #  existingClaim: sourcify-compilers-default
-  #  mountPath: /data/compiler-new
+  data-new:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-default-xfs
+    mountPath: /data/repository-new
+  compilers-new:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-compilers-default
+    mountPath: /data/compiler-new
 
 ##
 ## Health probes
