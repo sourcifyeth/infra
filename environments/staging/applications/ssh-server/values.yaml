@@ -18,23 +18,17 @@ service:
         nodePort: 31000
 
 nodeSelector:
-  kubernetes.io/hostname: sourcify-staging-ams3-main-pool-yjhkl
+  dedicated: sourcify-static
 
-#controller:
-#  labels:
-#    volumeAffinity: sourcify
-#
-#affinity:
-#  podAffinity:
-#    requiredDuringSchedulingIgnoredDuringExecution:
-#      - labelSelector:
-#          matchExpressions:
-#            - key: volumeAffinity
-#              operator: In
-#              values:
-#                - sourcify
-#        topologyKey: kubernetes.io/hostname
-
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: dedicated
+          operator: In
+          values:
+          - sourcify-static
 
 ##
 ## Environment configuration
