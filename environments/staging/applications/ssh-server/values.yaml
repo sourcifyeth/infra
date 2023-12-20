@@ -19,7 +19,11 @@ service:
 
 nodeSelector:
   dedicated: sourcify-static
-
+tolerations:
+  - key: "dedicated"
+    operator: "Equal"
+    value: "sourcify-static"
+    effect: "NoSchedule"
 affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
