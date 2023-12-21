@@ -84,23 +84,13 @@ persistence:
   data:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository-xfs
+    existingClaim: sourcify-repository-default-xfs
     mountPath: /home/app/repository
   compilers:
     enabled: true
     type: pvc
-    existingClaim: sourcify-compilers
-    mountPath: /home/app/compilers
-  data-new:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-repository-default-xfs
-    mountPath: /data/repository-new
-  compilers-new:
-    enabled: true
-    type: pvc
     existingClaim: sourcify-compilers-default
-    mountPath: /data/compilers-new
+    mountPath: /home/app/compilers
 ##
 ## Health probes
 ##
