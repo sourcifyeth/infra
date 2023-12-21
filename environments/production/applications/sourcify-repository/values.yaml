@@ -9,11 +9,11 @@ imagePullSecrets:
 ##
 resources:
   limits:
-    cpu: "0.03"
-    memory: 100Mi
+    cpu: "0.3"
+    memory: 450Mi
   requests:
-    cpu: "0.01"
-    memory: 80Mi
+    cpu: "0.1"
+    memory: 350Mi
 controller:
   type: deployment
   replicas: 1
