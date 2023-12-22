@@ -60,7 +60,7 @@ persistence:
   data:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository-xfs
+    existingClaim: sourcify-repository-default-xfs
     mountPath: /data
 
 ##

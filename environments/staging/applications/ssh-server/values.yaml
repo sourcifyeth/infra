@@ -17,6 +17,9 @@ service:
         protocol: TCP
         nodePort: 31000
 
+##
+## Run pod on a specific node
+##
 nodeSelector:
   dedicated: sourcify-static
 tolerations:
@@ -57,26 +60,16 @@ secrets:
 ##
 
 persistence:
-  data-xfs:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-repository-xfs
-    mountPath: /data/repository-xfs
-  compilers:
-    enabled: true
-    type: pvc
-    existingClaim: sourcify-compilers
-    mountPath: /data/compilers
-  data-new:
+  data:
     enabled: true
     type: pvc
     existingClaim: sourcify-repository-default-xfs
-    mountPath: /data/repository-new
-  compilers-new:
+    mountPath: /data/repository
+  compilers:
     enabled: true
     type: pvc
     existingClaim: sourcify-compilers-default
-    mountPath: /data/compiler-new
+    mountPath: /data/compilers
 
 ##
 ## Health probes
