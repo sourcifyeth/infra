@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/repository
-  tag: staging@sha256:1688e4631b7b38dc9ccbac8f6a0c9d0be5e6be9e670e69e5b23c5e90989f2d03
+  tag: staging@sha256:45d9f1e00c197be3cb3233b8eeee1131773984000863e353134f52c7ef1f58c5
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -34,11 +34,11 @@ affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: dedicated
-          operator: In
-          values:
-          - sourcify-static
+        - matchExpressions:
+            - key: dedicated
+              operator: In
+              values:
+                - sourcify-static
 ##
 ## Environment configuration
 ##
@@ -59,7 +59,6 @@ persistence:
     type: pvc
     existingClaim: sourcify-repository-default-xfs
     mountPath: /data
-
 ##
 ## Health probes
 ##
