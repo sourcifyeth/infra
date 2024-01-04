@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/repository
-  tag: master@sha256:f150482b29565a741f179af2e1f22ff2f3445794c284c633e42e58ae647bff1a
+  tag: master@sha256:45d9f1e00c197be3cb3233b8eeee1131773984000863e353134f52c7ef1f58c5
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -40,11 +40,11 @@ affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: dedicated
-          operator: In
-          values:
-          - sourcify-static
+        - matchExpressions:
+            - key: dedicated
+              operator: In
+              values:
+                - sourcify-static
 ##
 ## Environment configuration
 ##
