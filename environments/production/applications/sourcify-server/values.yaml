@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/server
-  tag: master@sha256:8d2a4ba23948d33059e486ca7827f4bbc4a1937b3a386589a348b78d25e3bd5b
+  tag: master@sha256:19c374cd55dbf5679d4b85a799cfa8003466d749a0eab2903ff31155eecb8519
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
@@ -26,7 +26,6 @@ service:
     ports:
       http:
         port: 80
-
 ##
 ## Run pod on a specific node
 ##
@@ -41,11 +40,11 @@ affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: dedicated
-          operator: In
-          values:
-          - sourcify-static
+        - matchExpressions:
+            - key: dedicated
+              operator: In
+              values:
+                - sourcify-static
 ##
 ## Environment configuration
 ##
