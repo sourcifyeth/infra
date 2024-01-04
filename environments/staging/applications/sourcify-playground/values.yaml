@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/sourcifyeth/metadata-playground
-  tag: main@sha256:94b895a4d4254d696e238027f9984a758f53ea4b519e57d735dcb6c582aef193
+  tag: main@sha256:bac5fecec57af564cce7b1ff61f8aa51aaacbd9841ef4f3d0dacdc31792eacc7
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
