@@ -1,0 +1,38 @@
+
+{{- if .Values.migrations.enabled -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-migration
+data:
+{{ (.Files.Glob "scripts/migration/*").AsConfig | indent 2 }}
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: "{{ .Values.migrations.image.registry }}/{{ .Values.migrations.image.repository }}:{{ .Values.migrations.image.tag }}"
+        command: ["bash"]
+        args:
+          - /scripts/run-migrations.sh
+        imagePullPolicy: IfNotPresent
+        name: migration
+        volumeMounts:
+          - mountPath: "/scripts"
+            name: scripts
+        env:
+          {{- toYaml .Values.migrations.env | nindent 10 }}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: scripts
+          configMap:
+            name: db-migration
+            defaultMode: 0500
+{{- end }}
