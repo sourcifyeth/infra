@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 git clone https://github.com/ethereum/sourcify.git
 cd sourcify
-git checkout sourcify-database
+git checkout staging
 cd services/database
 sed -i "s/localhost/$POSTGRES_HOST/g" database.json
 npm install
