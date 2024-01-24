@@ -47,3 +47,22 @@ migrations:
       value: "5432"
     - name: POSTGRES_HOST
       value: postgresql
+
+filesystemImport:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: node
+    tag: 16.17.0-bullseye
+    pullPolicy: IfNotPresent
+  env:
+    - name: POSTGRES_USER
+      value: sourcify
+    - name: POSTGRES_PASSWORD
+      value: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
+    - name: POSTGRES_DB
+      value: sourcify
+    - name: POSTGRES_PORT
+      value: "5432"
+    - name: POSTGRES_HOST
+      value: postgresql
