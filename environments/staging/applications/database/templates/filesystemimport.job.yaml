@@ -1,15 +1,21 @@
 {{- if .Values.filesystemImport.enabled -}}
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: db-fs-import
+  labels:
+    app: db-fs-import
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-fs-import
   template:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/migration.configmap.yaml") . | sha256sum }}
     spec:
-      restartPolicy: Never
+      #restartPolicy: Never
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -24,9 +30,9 @@ spec:
           env:
           {{- toYaml .Values.filesystemImport.env | nindent 10 }}
           image: "{{ .Values.filesystemImport.image.registry }}/{{ .Values.filesystemImport.image.repository }}:{{ .Values.filesystemImport.image.tag }}"
-          command: ["bash"]
+          command: ["bash", "-ac"]
           args:
-            - /scripts/run-fs-import.sh
+            - /scripts/simple-setup.sh && exec sleep infinity
           imagePullPolicy: "{{ .Values.filesystemImport.image.pullPolicy }}"
           volumeMounts:
             - mountPath: /data/repository
@@ -35,7 +41,7 @@ spec:
               name: scripts
       nodeSelector:
         dedicated: sourcify-static
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 30
       tolerations:
         - effect: NoSchedule
           key: dedicated
