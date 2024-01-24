@@ -30,7 +30,7 @@ postgresql:
     size: 8Gi
 
 migrations:
-  enabled: true
+  enabled: false
   image:
     registry: docker.io
     repository: node
@@ -49,7 +49,7 @@ migrations:
       value: postgresql
 
 filesystemImport:
-  enabled: true
+  enabled: false
   image:
     registry: docker.io
     repository: node
