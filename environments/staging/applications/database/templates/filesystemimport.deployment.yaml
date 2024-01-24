@@ -12,6 +12,8 @@ spec:
       app: db-fs-import
   template:
     metadata:
+      labels:
+        app: db-fs-import
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/migration.configmap.yaml") . | sha256sum }}
     spec:
