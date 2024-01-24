@@ -49,7 +49,7 @@ migrations:
       value: postgresql
 
 filesystemImport:
-  enabled: true
+  enabled: false
   image:
     registry: docker.io
     repository: node
