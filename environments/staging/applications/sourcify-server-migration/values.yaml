@@ -46,7 +46,7 @@ env:
   IPFS_API: http://ipfs-ipfs-main:5001
   NODE_ENV: production
   NODE_CONFIG_ENV: migration
-  SOURCIFY_POSTGRES_HOST: posgresql
+  SOURCIFY_POSTGRES_HOST: postgresql
   SOURCIFY_POSTGRES_DB: sourcify
   SOURCIFY_POSTGRES_USER: sourcify
   SOURCIFY_POSTGRES_PORT: 5432
