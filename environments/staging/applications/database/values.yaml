@@ -27,7 +27,7 @@ postgresql:
   persistence:
     enabled: true
     storageClass: ""
-    size: 8Gi
+    size: 250Gi
 
 migrations:
   enabled: true
