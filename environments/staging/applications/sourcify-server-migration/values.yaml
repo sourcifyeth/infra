@@ -85,11 +85,16 @@ secrets:
 ## Data persistence
 ##
 persistence:
-  data:
+  data-v1-repo:
     enabled: true
     type: pvc
-    existingClaim: sourcify-repository-default-xfs
+    existingClaim: sourcify-repository-v1-xfs
     mountPath: /home/app/repository
+  data-v2-repo:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-v2-xfs
+    mountPath: /home/app/repositoryV2
   compilers:
     enabled: true
     type: pvc
