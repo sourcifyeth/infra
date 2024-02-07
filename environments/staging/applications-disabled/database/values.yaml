@@ -1,0 +1,68 @@
+postgresql:
+  fullnameOverride: postgresql
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 16.1.0-debian-11-r19
+    pullPolicy: IfNotPresent
+  auth:
+    # admin user
+    enablePostgresUser: true
+    postgresPassword: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_admin_password>"
+    # default database to create and its user
+    database: sourcify
+    username: sourcify
+    password: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
+    # replication user
+    replicationUsername: repl_user
+    replicationPassword: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_repl_user_password>"
+  primary:
+    extendedConfiguration: |
+      max_connections = 1024
+  resources:
+    limits: {}
+    requests:
+      memory: 256Mi
+      cpu: 250m
+  persistence:
+    enabled: true
+    storageClass: ""
+    size: 8Gi
+
+migrations:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: node
+    tag: 16.17.0-bullseye
+    pullPolicy: IfNotPresent
+  env:
+    - name: POSTGRES_USER
+      value: sourcify
+    - name: POSTGRES_PASSWORD
+      value: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
+    - name: POSTGRES_DB
+      value: sourcify
+    - name: POSTGRES_PORT
+      value: "5432"
+    - name: POSTGRES_HOST
+      value: postgresql
+
+filesystemImport:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: node
+    tag: 16.17.0-bullseye
+    pullPolicy: IfNotPresent
+  env:
+    - name: POSTGRES_USER
+      value: sourcify
+    - name: POSTGRES_PASSWORD
+      value: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
+    - name: POSTGRES_DB
+      value: sourcify
+    - name: POSTGRES_PORT
+      value: "5432"
+    - name: POSTGRES_HOST
+      value: postgresql

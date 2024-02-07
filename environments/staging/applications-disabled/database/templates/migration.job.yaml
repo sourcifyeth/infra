@@ -1,0 +1,34 @@
+{{- if .Values.migrations.enabled -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/migration.configmap.yaml") . | sha256sum }}
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: "{{ .Values.migrations.image.registry }}/{{ .Values.migrations.image.repository }}:{{ .Values.migrations.image.tag }}"
+        command: ["bash"]
+        args:
+          - /scripts/run-migrations.sh
+        imagePullPolicy: IfNotPresent
+        name: migration
+        volumeMounts:
+          - mountPath: "/scripts"
+            name: scripts
+        env:
+          {{- toYaml .Values.migrations.env | nindent 10 }}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: scripts
+          configMap:
+            name: db-migration
+            defaultMode: 0500
+{{- end }}
