@@ -80,6 +80,7 @@ secrets:
       COREDAO_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#COREDAO_API_KEY>"
       COREDAO_TESTNET_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#COREDAO_TESTNET_API_KEY>"
       SCROLLSCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#SCROLLSCAN_API_KEY>"
+      KROMASCAN_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#KROMASCAN_API_KEY>"
       CF_ACCESS_CLIENT_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_ID>"
       CF_ACCESS_CLIENT_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#CF_ACCESS_CLIENT_SECRET>"
       AWS_REGION: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_REGION>"
