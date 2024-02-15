@@ -53,7 +53,7 @@ postgresql:
           find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
           echo "Only keeping the $BACKUPS_TO_KEEP most recent backups";
           cd $BACKUP_DIR;
-          ls -t | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm --;
+          ls -t | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm -- {};
       storage:
         storageClass: ""
         size: 200Gi
