@@ -28,6 +28,26 @@ postgresql:
     enabled: true
     storageClass: ""
     size: 250Gi
+  backup:
+    enabled: true
+    cronjob:
+      schedule: "* * * * *"
+      concurrencyPolicy: Forbid
+      restartPolicy: OnFailure
+      command:
+        - /bin/bash
+        - -cxe
+        - >-
+          export DAYS_TO_KEEP=10;
+          export BACKUP_FILE=/backup/pgdump/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          echo "Deleting backups older than $DAYS_TO_KEEP days";
+          find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
+          echo "Creating backup: $BACKUP_FILE";
+          pg_dumpall --clean --if-exists --load-via-partition-root --quote-all-identifiers --no-password --file=$BACKUP_FILE;
+    storage:
+      storageClass: ""
+      size: 200Gi
+      mountPath: /backup/pgdump
 
 migrations:
   enabled: true
