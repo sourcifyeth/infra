@@ -29,7 +29,7 @@ postgresql:
     storageClass: ""
     size: 250Gi
   backup:
-    enabled: true
+    enabled: false
     cronjob:
       schedule: "* * * * *"
       concurrencyPolicy: Forbid
@@ -53,10 +53,10 @@ postgresql:
           find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
           echo "Only keeping the $BACKUPS_TO_KEEP most recent backups";
           ls -t $BACKUP_DIR | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm --;
-    storage:
-      storageClass: ""
-      size: 200Gi
-      mountPath: /backup/pgdump
+      storage:
+        storageClass: ""
+        size: 200Gi
+        mountPath: /backup/pgdump
 
 migrations:
   enabled: true
