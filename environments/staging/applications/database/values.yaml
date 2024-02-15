@@ -43,8 +43,9 @@ postgresql:
           export BACKUPS_TO_KEEP=10;
           export BACKUP_DIR=/backup/pgdump;
           export BACKUP_FILE=$BACKUP_DIR/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          echo "Total backups sizes: $(du -sh $BACKUP_DIR)";
           echo "Listing all backups:";
-          ls -lh $BACKUP_DIR;
+          ls -lh $BACKUP_DIR/*.pgdump;
           echo "Creating backup: $BACKUP_FILE";
           pg_dumpall --clean --if-exists --load-via-partition-root --quote-all-identifiers --no-password --file=$BACKUP_FILE;
           duration=$SECONDS;
@@ -53,7 +54,7 @@ postgresql:
           find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
           echo "Only keeping the $BACKUPS_TO_KEEP most recent backups";
           cd $BACKUP_DIR;
-          ls -t | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm -- {};
+          ls -t *.pgdump | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm -- {};
       storage:
         storageClass: ""
         size: 200Gi
