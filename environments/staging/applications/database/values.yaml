@@ -29,7 +29,7 @@ postgresql:
     storageClass: ""
     size: 250Gi
   backup:
-    enabled: false
+    enabled: true
     cronjob:
       schedule: "* * * * *"
       concurrencyPolicy: Forbid
