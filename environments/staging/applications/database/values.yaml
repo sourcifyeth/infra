@@ -36,14 +36,20 @@ postgresql:
       restartPolicy: OnFailure
       command:
         - /bin/bash
-        - -cxe
+        - -ce
         - >-
+          SECONDS=0;
           export DAYS_TO_KEEP=10;
-          export BACKUP_FILE=/backup/pgdump/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          export BACKUP_DIR=/backup/pgdump;
+          export BACKUP_FILE=$BACKUP_DIR/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          echo "Listing all backups:";
+          ls -lh $BACKUP_DIR;
           echo "Deleting backups older than $DAYS_TO_KEEP days";
           find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
           echo "Creating backup: $BACKUP_FILE";
           pg_dumpall --clean --if-exists --load-via-partition-root --quote-all-identifiers --no-password --file=$BACKUP_FILE;
+          duration=$SECONDS;
+          echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed.";
     storage:
       storageClass: ""
       size: 200Gi
