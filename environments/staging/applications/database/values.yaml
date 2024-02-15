@@ -51,8 +51,8 @@ postgresql:
           echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed.";
           echo "Deleting backups older than $DAYS_TO_KEEP days";
           find /backup/pgdump -mtime +$DAYS_TO_KEEP -type f -delete;
-          echo "Only keeping the 10 most recent backups";
-          ls -t $BACKUP_DIR | tail -n +$BACKUPS_TO_KEEP | xargs rm --;
+          echo "Only keeping the $BACKUPS_TO_KEEP most recent backups";
+          ls -t $BACKUP_DIR | tail -n +$((BACKUPS_TO_KEEP + 1)) | xargs rm --;
     storage:
       storageClass: ""
       size: 200Gi
