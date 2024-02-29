@@ -31,7 +31,7 @@ postgresql:
   backup:
     enabled: true
     cronjob:
-      schedule: "* * * * *"
+      schedule: "00 02 * * *"
       concurrencyPolicy: Forbid
       restartPolicy: OnFailure
       command:
