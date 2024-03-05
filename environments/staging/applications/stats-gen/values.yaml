@@ -16,7 +16,7 @@ controller:
   restartPolicy: Never
   cronjob:
     concurrencyPolicy: Forbid
-    schedule: "40 18 * * *"
+    schedule: "51 18 * * *"
     startingDeadlineSeconds: 30
     successfulJobsHistory: 1
     failedJobsHistory: 1
@@ -37,9 +37,9 @@ configMaps:
         for chainId in ${CHAINS}; do
           OUTPUT="$OUTPUT  \"$chainId\": {"
           OUTPUT="$OUTPUT    \"full_match\": $(find $REPOSITORY_PATH/contracts/full_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l),"
-          OUTPUT="$OUTPUT    \"full_match_size_kb\": $(du -s $REPOSITORY_PATH/contracts/full_match/$chainId/),"
+          OUTPUT="$OUTPUT    \"full_match_size_kb\": $(du -s $REPOSITORY_PATH/contracts/full_match/$chainId/ | cut -f1),"
           OUTPUT="$OUTPUT    \"partial_match\": $(find $REPOSITORY_PATH/contracts/partial_match/$chainId/ -mindepth 1 -maxdepth 1 -type d | wc -l || echo '0'),"
-          OUTPUT="$OUTPUT    \"partial_match_size_kb\": $(du -s $REPOSITORY_PATH/contracts/partial_match/$chainId/)"
+          OUTPUT="$OUTPUT    \"partial_match_size_kb\": $(du -s $REPOSITORY_PATH/contracts/partial_match/$chainId/ | cut -f1)"
 
           if [[ $chainId == $(echo $CHAINS | rev | cut -d " " -f1 | rev) ]]
             then
