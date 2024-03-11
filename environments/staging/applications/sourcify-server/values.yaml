@@ -46,10 +46,10 @@ env:
   IPFS_API: http://ipfs-ipfs-main:5001
   NODE_ENV: production
   NODE_CONFIG_ENV: staging
-  # SOURCIFY_POSTGRES_HOST: postgresql
-  # SOURCIFY_POSTGRES_DB: sourcify
-  # SOURCIFY_POSTGRES_USER: sourcify
-  # SOURCIFY_POSTGRES_PORT: 5432
+  SOURCIFY_POSTGRES_HOST: postgresql
+  SOURCIFY_POSTGRES_DB: sourcify
+  SOURCIFY_POSTGRES_USER: sourcify
+  SOURCIFY_POSTGRES_PORT: 5432
   ALLIANCE_POSTGRES_HOST: 34.159.5.50
   ALLIANCE_POSTGRES_DB: verifier-alliance
   ALLIANCE_POSTGRES_USER: sourcify
@@ -97,6 +97,11 @@ persistence:
     type: pvc
     existingClaim: sourcify-repository-default-xfs
     mountPath: /home/app/repository
+  data-v2-repo:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-v2-xfs
+    mountPath: /home/app/repositoryV2
   compilers:
     enabled: true
     type: pvc
