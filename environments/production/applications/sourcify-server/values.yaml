@@ -53,7 +53,10 @@ env:
   IPFS_API: http://ipfs-ipfs-main:5001
   NODE_ENV: production
   NODE_CONFIG_ENV: master
-  TMP_TO_REMOVE_LATER: test2
+  SOURCIFY_POSTGRES_HOST: postgresql
+  SOURCIFY_POSTGRES_DB: sourcify
+  SOURCIFY_POSTGRES_USER: sourcify
+  SOURCIFY_POSTGRES_PORT: 5432
 ##
 ## Secrets
 ##
@@ -86,6 +89,7 @@ secrets:
       AWS_REGION: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_REGION>"
       AWS_ACCESS_KEY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_ACCESS_KEY_ID>"
       AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_SECRET_ACCESS_KEY>"
+      SOURCIFY_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
 ##
 ## Data persistence
 ##
@@ -95,6 +99,11 @@ persistence:
     type: pvc
     existingClaim: sourcify-repository-default-xfs
     mountPath: /home/app/repository
+  data-v2-repo:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-v2-xfs
+    mountPath: /home/app/repositoryV2
   compilers:
     enabled: true
     type: pvc
