@@ -86,7 +86,7 @@ secrets:
       AWS_REGION: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_REGION>"
       AWS_ACCESS_KEY_ID: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_ACCESS_KEY_ID>"
       AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_SECRET_ACCESS_KEY>"
-      # SOURCIFY_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
+      SOURCIFY_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
       ALLIANCE_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_alliance_sourcify_password>"
 ##
 ## Data persistence
