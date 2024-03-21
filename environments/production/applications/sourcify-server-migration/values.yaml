@@ -9,7 +9,7 @@ imagePullSecrets:
 ##
 controller:
   type: statefulset
-  replicas: 0
+  replicas: 1
   strategy: RollingUpdate
 service:
   main:
