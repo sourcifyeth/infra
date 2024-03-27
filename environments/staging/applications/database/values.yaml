@@ -27,7 +27,7 @@ postgresql:
     persistence:
       enabled: true
       storageClass: ""
-      size: 250Gi
+      size: 8Gi # 250Gi real, increased via PVC resize
   backup:
     enabled: true
     cronjob:
