@@ -19,15 +19,15 @@ postgresql:
   primary:
     extendedConfiguration: |
       max_connections = 1024
-  resources:
-    limits: {}
-    requests:
-      memory: 4Gi
-      cpu: 2000m
-  persistence:
-    enabled: true
-    storageClass: ""
-    size: 300Gi
+    resources:
+      limits: {}
+      requests:
+        memory: 4Gi
+        cpu: 2000m
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 300Gi
   backup:
     enabled: true
     cronjob:

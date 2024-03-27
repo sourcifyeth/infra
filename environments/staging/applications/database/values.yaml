@@ -23,11 +23,11 @@ postgresql:
     limits: {}
     requests:
       memory: 4Gi
-      cpu: null
-  persistence:
-    enabled: true
-    storageClass: ""
-    size: 250Gi
+      cpu: 2000m
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 250Gi
   backup:
     enabled: true
     cronjob:
