@@ -62,6 +62,7 @@ secrets:
     enabled: true
     stringData:
       SESSION_SECRET: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#SOURCIFY_SERVER_SESSION_SECRET>"
+      SETLOGGING_TOKEN: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#SOURCIFY_SERVER_SETLOGGING_TOKEN>"
       INFURA_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#INFURA_API_KEY>"
       ALCHEMY_API_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY>"
       ALCHEMY_API_KEY_OPTIMISM: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ALCHEMY_API_KEY_OPTIMISM>"
