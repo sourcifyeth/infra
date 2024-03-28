@@ -61,6 +61,7 @@ env:
   ALLIANCE_POSTGRES_DB: verifier-alliance
   ALLIANCE_POSTGRES_USER: sourcify
   ALLIANCE_POSTGRES_PORT: 5432
+  TRIGGER_UPDATE: to_remove
 ##
 ## Secrets
 ##
