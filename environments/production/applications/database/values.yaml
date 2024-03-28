@@ -31,7 +31,7 @@ postgresql:
   backup:
     enabled: true
     cronjob:
-      schedule: "00 03 * * *"
+      schedule: "00 03,09,15,21 * * *"
       concurrencyPolicy: Forbid
       restartPolicy: OnFailure
       command:
@@ -45,7 +45,7 @@ postgresql:
           export BACKUP_FILE=$BACKUP_DIR/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
           echo "Total backups sizes: $(du -sh $BACKUP_DIR)";
           echo "Listing all backups:";
-          ls -lh $BACKUP_DIR/*.pgdump;
+          ls -lh $BACKUP_DIR/*.pgdump || true;
           echo "Creating backup: $BACKUP_FILE";
           pg_dumpall --clean --if-exists --load-via-partition-root --quote-all-identifiers --no-password --file=$BACKUP_FILE;
           duration=$SECONDS;
