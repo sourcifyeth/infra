@@ -57,9 +57,10 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "X-Request-ID: $req_id";
-    nginx.ingress.kubernetes.io/mirror-target: https://staging.sourcify.dev$request_uri
-    nginx.ingress.kubernetes.io/mirror-host: "staging.sourcify.dev"
-    nginx.ingress.kubernetes.io/mirror-request-body: "on"
+    # Turn on to mirror the requests sent to the production to the staging
+    # nginx.ingress.kubernetes.io/mirror-target: https://staging.sourcify.dev$request_uri
+    # nginx.ingress.kubernetes.io/mirror-host: "staging.sourcify.dev"
+    # nginx.ingress.kubernetes.io/mirror-request-body: "on"
 spec:
   ingressClassName: ingress-nginx-public
   tls:
