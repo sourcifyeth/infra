@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/monitor
-  tag: staging@sha256:4ab32cc365b6cb1767588400904916c061bc6b39be3fc077e29abc016add146f
+  tag: staging@sha256:1a436d32d238acbee4ee71e19493b0df4d5f2560ba93570b400cf48b30101768
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
