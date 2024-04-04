@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/repository
-  tag: master@sha256:50ab2462facf1dec26320c79fd873e51a3a3344aae50881da23ac243b7aa27f9
+  tag: master@sha256:5ea3158aa57d9682cf97a1e11e151143db37b40cc8efce81da68ebee7f7b955b
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
