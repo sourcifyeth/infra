@@ -40,14 +40,15 @@ postgresql:
         - >-
           SECONDS=0;
           export DAYS_TO_KEEP=10;
-          export BACKUPS_TO_KEEP=10;
+          export BACKUPS_TO_KEEP=1;
           export BACKUP_DIR=/backup/pgdump;
-          export BACKUP_FILE=$BACKUP_DIR/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          export BACKUP_FILE=$BACKUP_DIR/sourcify-$(date '+%Y-%m-%d-%H-%M').pgdump;
+          find $BACKUP_DIR -size 0c -delete;
           echo "Total backups sizes: $(du -sh $BACKUP_DIR)";
           echo "Listing all backups:";
           ls -lh $BACKUP_DIR/*.pgdump || true;
           echo "Creating backup: $BACKUP_FILE";
-          pg_dumpall --clean --if-exists --load-via-partition-root --quote-all-identifiers --no-password --file=$BACKUP_FILE;
+          pg_dump --dbname=sourcify --exclude-table=session --clean --if-exists --load-via-partition-root --no-password --file=$BACKUP_FILE;
           duration=$SECONDS;
           echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed.";
           echo "Deleting backups older than $DAYS_TO_KEEP days";
