@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ethereum/sourcify/server
-  tag: staging@sha256:b384fa5705dbbdf1bbf4970e6bf11b35ac81c55f74cf7983b62354f51881eed9
+  tag: staging@sha256:fd1fedc48e8fbc89a7c0a63ec6f1f614bdc348bc79d92455eea026645f9ac4a7
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
