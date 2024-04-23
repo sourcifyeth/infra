@@ -97,6 +97,11 @@ persistence:
     type: pvc
     existingClaim: sourcify-repository-v2-xfs
     mountPath: /home/app/repositoryV2
+  data-current:
+    enabled: true
+    type: pvc
+    existingClaim: sourcify-repository-default-xfs
+    mountPath: /home/app/repository_current
   compilers:
     enabled: true
     type: pvc
