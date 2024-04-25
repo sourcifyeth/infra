@@ -91,6 +91,6 @@ ipfs-cluster:
               - ipfs-main
     storage:
       storageClassName: "do-block-storage-xfs"
-      volumeSize: "100Gi"
+      volumeSize: "200Gi"
 
   sharedSecret: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#ipfs_main_shared_secret>"
