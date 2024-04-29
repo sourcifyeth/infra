@@ -42,8 +42,8 @@ affinity:
 ##
 ## Environment configuration
 ##
-env: {}
-##
+env:
+  SOURCIFY_SERVER: http://sourcify-server
 ## Secrets
 ##
 secrets:
