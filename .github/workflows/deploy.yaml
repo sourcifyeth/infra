@@ -41,6 +41,9 @@ jobs:
             playground)
               echo "app-dir=sourcify-playground" >> "$GITHUB_OUTPUT"
               ;;
+            verifier-alliance-sync)
+              echo "app-dir=verifier-alliance-sync" >> "$GITHUB_OUTPUT"
+              ;;
             *)
               echo "app-dir=unknown" >> "$GITHUB_OUTPUT"
               exit 1
@@ -63,3 +66,5 @@ jobs:
             ci(${{ github.event.client_payload.environment }}): update ${{ github.event.client_payload.component }} - ${{ github.event.client_payload.ref }}/${{ github.event.client_payload.sha }}"
           default_author: github_actions
           pull: '--rebase --autostash'
+
+verifier-alliance-sync
