@@ -1,0 +1,47 @@
+image:
+  repository: ghcr.io/sourcifyeth/verifier-alliance
+  tag: master@sha256:5dde9a108e7559d186b089ce807892d831f04ea3110782659b72b8cc9256a179
+  pullPolicy: IfNotPresent
+imagePullSecrets:
+  - name: image-pull-secret
+
+##
+## Application
+##
+controller:
+  type: deployment
+  replicas: 1
+  strategy: RollingUpdate
+service:
+  main:
+    enabled: false
+
+##
+## Environment configuration
+##
+env:
+  SOURCIFY_SERVER_HOST: 5432
+  VERA_HOST: 34.159.5.50
+  VERA_DB: verifier-alliance
+  VERA_USER: sourcify
+  VERA_PORT: 5432
+
+##
+## Secrets
+##
+secrets:
+  secretenv:
+    enabled: true
+    stringData:
+      VERA_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_alliance_sourcify_password>"
+
+##
+## Health probes
+##
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
