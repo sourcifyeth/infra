@@ -20,7 +20,7 @@ service:
 ## Environment configuration
 ##
 env:
-  SOURCIFY_SERVER_HOST: 5432
+  SOURCIFY_SERVER_HOST: http://sourcify-server
   VERA_HOST: 34.159.5.50
   VERA_DB: verifier-alliance
   VERA_USER: sourcify
