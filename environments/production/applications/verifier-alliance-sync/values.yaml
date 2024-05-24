@@ -1,10 +1,9 @@
 image:
   repository: ghcr.io/sourcifyeth/verifier-alliance
-  tag: master@sha256:5dde9a108e7559d186b089ce807892d831f04ea3110782659b72b8cc9256a179
+  tag: master@sha256:ff8e86e5ce2d1ff809e9d1818c1e0a53646671060c8ab8fcfbe489995293e1c9
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
-
 ##
 ## Application
 ##
@@ -15,7 +14,6 @@ controller:
 service:
   main:
     enabled: false
-
 ##
 ## Run pod on a specific node
 ##
@@ -35,7 +33,6 @@ affinity:
               operator: In
               values:
                 - sourcify-static
-
 ##
 ## Environment configuration
 ##
@@ -45,7 +42,6 @@ env:
   VERA_DB: verifier-alliance
   VERA_USER: sourcify
   VERA_PORT: 5432
-
 ##
 ## Secrets
 ##
@@ -54,7 +50,6 @@ secrets:
     enabled: true
     stringData:
       VERA_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_alliance_sourcify_password>"
-
 ##
 ## Health probes
 ##
