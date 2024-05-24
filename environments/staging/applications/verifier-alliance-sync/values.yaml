@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/sourcifyeth/verifier-alliance
-  tag: master@sha256:0f08ae6625e4b69cf4c2f34231964248e14e3c570504c5f70f5e1822458945cc
+  tag: master@sha256:ff8e86e5ce2d1ff809e9d1818c1e0a53646671060c8ab8fcfbe489995293e1c9
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: image-pull-secret
