@@ -29,7 +29,7 @@ postgresql:
       storageClass: ""
       size: 8Gi # 250Gi real, increased via PVC resize
   backup:
-    enabled: false
+    enabled: true
     cronjob:
       schedule: "00 03,09,15,21 * * *"
       concurrencyPolicy: Forbid
