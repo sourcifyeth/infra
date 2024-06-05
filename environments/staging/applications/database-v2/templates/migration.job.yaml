@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: db-migration-
+  generateName: db-v2-migration-
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -29,6 +29,6 @@ spec:
       volumes:
         - name: scripts
           configMap:
-            name: db-migration
+            name: db-v2-migration
             defaultMode: 0500
 {{- end }}

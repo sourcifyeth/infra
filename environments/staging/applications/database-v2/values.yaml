@@ -78,7 +78,7 @@ migrations:
     - name: POSTGRES_PORT
       value: "5432"
     - name: POSTGRES_HOST
-      value: postgresql
+      value: postgresql-v2
 
 filesystemImport:
   enabled: true
@@ -97,4 +97,4 @@ filesystemImport:
     - name: POSTGRES_PORT
       value: "5432"
     - name: POSTGRES_HOST
-      value: postgresql
+      value: postgresql-v2

@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: scripts
           configMap:
-            name: db-migration
+            name: db-v2-migration
             defaultMode: 0500
         - name: data
           persistentVolumeClaim:
