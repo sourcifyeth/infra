@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-fs-import
+  name: db-v2-fs-import
   labels:
-    app: db-fs-import
+    app: db-v2-fs-import
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: db-fs-import
+      app: db-v2-fs-import
   template:
     metadata:
       labels:
-        app: db-fs-import
+        app: db-v2-fs-import
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/migration.configmap.yaml") . | sha256sum }}
     spec:
