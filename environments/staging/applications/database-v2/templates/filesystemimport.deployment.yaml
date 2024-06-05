@@ -1,0 +1,60 @@
+{{- if .Values.filesystemImport.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-v2-fs-import
+  labels:
+    app: db-v2-fs-import
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-v2-fs-import
+  template:
+    metadata:
+      labels:
+        app: db-v2-fs-import
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/migration.configmap.yaml") . | sha256sum }}
+    spec:
+      #restartPolicy: Never
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: dedicated
+                  operator: In
+                  values:
+                  - sourcify-static
+      containers:
+        - name: fs-import
+          env:
+          {{- toYaml .Values.filesystemImport.env | nindent 10 }}
+          image: "{{ .Values.filesystemImport.image.registry }}/{{ .Values.filesystemImport.image.repository }}:{{ .Values.filesystemImport.image.tag }}"
+          command: ["bash", "-ac"]
+          args:
+            - /scripts/simple-setup.sh && exec sleep infinity
+          imagePullPolicy: "{{ .Values.filesystemImport.image.pullPolicy }}"
+          volumeMounts:
+            - mountPath: /data/repository
+              name: data
+            - mountPath: "/scripts"
+              name: scripts
+      nodeSelector:
+        dedicated: sourcify-static
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        - effect: NoSchedule
+          key: dedicated
+          operator: Equal
+          value: sourcify-static
+      volumes:
+        - name: scripts
+          configMap:
+            name: db-v2-migration
+            defaultMode: 0500
+        - name: data
+          persistentVolumeClaim:
+            claimName: sourcify-repository-default-xfs
+{{- end }}
