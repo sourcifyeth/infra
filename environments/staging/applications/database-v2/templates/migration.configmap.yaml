@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-migration
-data:
-{{ (.Files.Glob "scripts/migration/*").AsConfig | indent 2 }}
