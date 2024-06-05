@@ -1,5 +1,5 @@
 postgresql:
-  fullnameOverride: postgresql
+  fullnameOverride: postgresql-v2
   image:
     registry: docker.io
     repository: bitnami/postgresql
