@@ -22,7 +22,7 @@ postgresql:
     resources:
       limits: {}
       requests:
-        memory: 4Gi
+        memory: 8Gi
         cpu: 2000m
     persistence:
       enabled: true
