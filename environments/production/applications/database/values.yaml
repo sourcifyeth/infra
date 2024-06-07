@@ -69,7 +69,7 @@ postgresql:
         mountPath: /backup/pgdump
 
 migrations:
-  enabled: true
+  enabled: false
   image:
     registry: docker.io
     repository: node
