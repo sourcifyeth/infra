@@ -7,27 +7,19 @@ image:
 ## Application
 ##
 
-resources:
-  limits:
-    cpu: 1000m
-    memory: 2500Mi
-  requests:
-    cpu: 500m
-    memory: 2000Mi
-
 command:
   - /usr/local/bin/aws
   - s3
   - sync
+  - s3://sourcify-backup-s3/stable/contracts/
   - /data/contracts
-  - s3://sourcify-backup-s3/stable/repository/contracts/
 
 controller:
   type: cronjob
   restartPolicy: Never
   cronjob:
     concurrencyPolicy: Forbid
-    schedule: "40 13 * * *"
+    schedule: "15 12 * * *"
     startingDeadlineSeconds: 30
     successfulJobsHistory: 1
     failedJobsHistory: 1
