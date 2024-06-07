@@ -28,6 +28,13 @@ postgresql:
       enabled: true
       storageClass: ""
       size: 8Gi # 300Gi real, increased via PVC resize
+    extraVolumeMounts:
+      - name: backuprecovery
+        mountPath: /recovery
+    extraVolumes:
+      - name: backuprecovery
+        persistentVolumeClaim:
+          claimName: pvc-sourcify-db-restore
   backup:
     enabled: true
     cronjob:
