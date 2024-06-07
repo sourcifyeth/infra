@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
-name: s3-import-xfs
-home: https://github.com/sourcifyeth/docs
+description: This chart will help you to sync any directory to an S3 bucket
+name: s3-sync
 type: application
 version: 0.0.1
 kubeVersion: ">=1.22.0-0"
