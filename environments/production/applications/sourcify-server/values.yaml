@@ -16,7 +16,7 @@ resources:
     memory: "2000Mi"
 controller:
   type: statefulset
-  replicas: 0
+  replicas: 1
   strategy: RollingUpdate
 service:
   main:
