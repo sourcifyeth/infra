@@ -11,7 +11,7 @@ command:
   - /usr/local/bin/aws
   - s3
   - sync
-  - s3://sourcify-backup-s3/stable/contracts/
+  - s3://sourcify-backup-s3/stable/repository/contracts/
   - /data/contracts
 
 controller:
