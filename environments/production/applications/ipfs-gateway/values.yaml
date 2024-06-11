@@ -4,6 +4,10 @@ ipfs-cluster:
   replicaCount: 1
   p2pNodePort:
     nodePort: 32100
+    initContainer:
+      image:
+      repository: bitnami/kubectl
+      tag: v1.27.14
   cluster:
     image:
       repository: ipfs/ipfs-cluster
