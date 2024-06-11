@@ -61,7 +61,6 @@ controller:
   type: cronjob
   restartPolicy: Never
   cronjob:
-    suspend: true
     concurrencyPolicy: Forbid
     schedule: "* * * * *"
     startingDeadlineSeconds: 30
