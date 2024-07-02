@@ -46,7 +46,7 @@ env:
   IPFS_API: http://ipfs-ipfs-main:5001
   NODE_ENV: production
   NODE_CONFIG_ENV: staging
-  SOURCIFY_POSTGRES_HOST: postgresql
+  SOURCIFY_POSTGRES_HOST: 35.233.80.114
   SOURCIFY_POSTGRES_DB: sourcify
   SOURCIFY_POSTGRES_USER: sourcify
   SOURCIFY_POSTGRES_PORT: 5432
@@ -54,10 +54,6 @@ env:
   ALLIANCE_POSTGRES_DB: verifier-alliance
   ALLIANCE_POSTGRES_USER: sourcify
   ALLIANCE_POSTGRES_PORT: 5432
-  SOURCIFY_FIXED_POSTGRES_HOST: postgresql-v2
-  SOURCIFY_FIXED_POSTGRES_DB: sourcify
-  SOURCIFY_FIXED_POSTGRES_USER: sourcify
-  SOURCIFY_FIXED_POSTGRES_PORT: 5432
 ##
 ## Secrets
 ##
@@ -94,7 +90,6 @@ secrets:
       AWS_SECRET_ACCESS_KEY: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#AWS_SECRET_ACCESS_KEY>"
       SOURCIFY_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
       ALLIANCE_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_alliance_sourcify_password>"
-      SOURCIFY_FIXED_POSTGRES_PASSWORD: "<path:/secrets/clusters/sourcify/shared/shared.enc.yaml#db_postgres_sourcify_password>"
 ##
 ## Data persistence
 ##
