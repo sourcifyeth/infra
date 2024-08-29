@@ -39,6 +39,10 @@ spec:
           volumeMounts:
             - mountPath: /data/repository
               name: data
+            - mountPath: /data/repository-v1
+              name: data-v1
+            - mountPath: /data/repository-v2
+              name: data-v2
             - mountPath: "/scripts"
               name: scripts
       nodeSelector:
@@ -57,4 +61,10 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: sourcify-repository-default-xfs
+        - name: data-v1
+          persistentVolumeClaim:
+            claimName: sourcify-repository-v1-xfs
+        - name: data-v2
+          persistentVolumeClaim:
+            claimName: sourcify-repository-v2-xfs
 {{- end }}
